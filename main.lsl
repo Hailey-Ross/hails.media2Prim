@@ -27,7 +27,7 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 hailsSetup() //Setup Primitive
 {
     llSetObjectName(objectName + " | v" + hailsVersion)
-    if (debug == TRUE) { llOwnerSay(llGetScriptName() + " Setting up Primitive..."); }
+    if (debug == TRUE) { llOwnerSay(objectName + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
     llSetColor(black, 1);
     llSetColor(black, 2);
@@ -57,10 +57,7 @@ default {
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
         {
-            if (debug == TRUE)
-            {
-                llOwnerSay(llGetScriptName() + " has detected a change, Resetting Script. . .");
-            }
+            if (debug == TRUE) { llOwnerSay(objectName + " has detected a change, Resetting Script. . ."); }
             llSleep(hailsTimer);
             llResetScript();
         }
@@ -69,7 +66,7 @@ default {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug == TRUE)
         {
-            llOwnerSay(llGetScriptName() + " is Performing Start up..");
+            llOwnerSay(objectName + " is Performing Start up..");
         }
         hailsSetup();
         hailsURL = "https://hails.cc/";
@@ -94,12 +91,12 @@ default {
         {
             if (debug == TRUE)
             {
-                llOwnerSay("URL: (" + data + ") ");  //Debug only
+                llOwnerSay(objectName + " has updated URL: (" + data + ") ");  //Debug only
             }
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
-            if (debug == TRUE) { llOwnerSay(llGetScriptName() + " is Sleeping for " + (string)hailsTimer2); } //Debug
+            if (debug == TRUE) { llOwnerSay(objectName + " is Sleeping for " + (string)hailsTimer2); } //Debug
             llSleep(hailsTimer2);
         }
     }
