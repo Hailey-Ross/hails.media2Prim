@@ -52,6 +52,7 @@ media2Prim()
              PRIM_MEDIA_CONTROLS,1,
              PRIM_MEDIA_AUTO_SCALE,1,
              PRIM_MEDIA_AUTO_LOOP,1]);
+    if (debug == TRUE) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
 
 default {
@@ -88,7 +89,6 @@ default {
         }
         else if (id == lineid)
         {
-            if (debug == TRUE) { llOwnerSay(hailsObjName + " has updated URL: (" + data + ") "); }
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
