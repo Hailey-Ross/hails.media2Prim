@@ -27,8 +27,16 @@ integer random_integer(integer min, integer max)
 
 hailsSetup() //Setup Primitive
 {
+    
+    if (debug == TRUE)
+      {
+            llOwnerSay(llGetScriptName() + " Setting up Primitive...");
+    }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
-    llSetColor(black, ALL_SIDES); //Set Primitive Texture Color to Black
+    llSetColor(black, 1);
+    llSetColor(black, 2);
+    llSetColor(black, 3);
+    llSetColor(black, 4);
     llSetAlpha(0.0, 4); //Bottom Transparent
 }
 
