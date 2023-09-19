@@ -24,3 +24,25 @@ Etc..
 - Save the script
 - Adjust the prim shape/position
 - Enjoy
+
+## CHANGELOG
+
+### Minor Patch 1
+*Unreleased*
+
+- media2Prim() function fully implemented
+   - Sets Variable then runs Function
+- New variables for easier customization
+- Minor code cleanup
+   - Compact debug lines
+   - Compact random_integer variable
+   - Commenting/Credits
+   - *most* Redundant Code Removed
+   - Variable names cleaned up
+- hailsSetup() Function
+   - Set Prim side faces to black
+   - Set Prim bottom face to Transparent
+   - Set Texture for remaining Faces to `BLANK_TEXTURE`
+   - Set Object Name + Version
+   - Set Phantom State
+   - Set Grab/Drag Functionality State
