@@ -14,7 +14,7 @@ media2Prim()
 {
     llSetPrimMediaParams(0,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_CURRENT_URL,"https://hails.cc/",    // The url currently showing
+             PRIM_MEDIA_CURRENT_URL,"https://assets.hails.cc/i/hailey-sting.gif",    // The url currently showing
              PRIM_MEDIA_HOME_URL,"https://hails.cc",       // The url if they hit 'home'
              PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
              PRIM_MEDIA_WIDTH_PIXELS,800,
