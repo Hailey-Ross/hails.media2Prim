@@ -29,7 +29,7 @@ default {
                 llOwnerSay(llGetScriptName() + " Starting up..");
             }
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
-        llSetTimerEvent(99.0);
+        llSetTimerEvent(144.0);
     }
     touch_start(integer total_number)
     {
