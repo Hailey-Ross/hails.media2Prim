@@ -18,6 +18,8 @@ Etc..
 - Rez a new `Box` Prim (*recommended shape*)
 - Create a Notecard named `hails.urls`
 - Place your peesonal URLS to Images/Sites/Animations **One per line**
-- Create a new script and copy/paste the code
+- Create a new script and copy/paste the code over the default script
 - Make any personal adjustments
+- Save the script
+- Adjust the prim to where you would like it
 - Enjoy
