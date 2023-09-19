@@ -6,13 +6,15 @@
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
+integer debug = FALSE;
+
 string card = "hails.urls";
 string hailsURL;
 string hailsHome;
 key linecountid;
 key lineid;
-integer linemax;  
-integer debug = FALSE;
+integer linemax;
+integer mediaFace = 0;
 float hailsTimer = 2.25;
 float hailsTimer2 = 90.0;
 
@@ -23,7 +25,7 @@ integer random_integer(integer min, integer max)
 
 media2Prim()
 {
-    llSetPrimMediaParams(0,                             // Side to display the media on.
+    llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
              PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
              PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
@@ -56,7 +58,7 @@ default {
             }
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
-        media2Prim();  //fix me
+        media2Prim();
         llSetTimerEvent(10.0);
     }
     touch_start(integer total_number)
