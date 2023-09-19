@@ -7,11 +7,14 @@
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
 string card = "hails.urls";
+string hailsURL;
+string hailsHome;
 key linecountid;
 key lineid;
 integer linemax;  
 integer debug = FALSE;
 float hailsTimer = 2.25;
+float hailsTimer2 = 90.0;
 
 integer random_integer(integer min, integer max)
 {
@@ -22,8 +25,8 @@ media2Prim()
 {
     llSetPrimMediaParams(0,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_CURRENT_URL,"https://assets.hails.cc/i/hailey-sting.gif",    // The url currently showing
-             PRIM_MEDIA_HOME_URL,"https://hails.cc",       // The url if they hit 'home'
+             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
+             PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
              PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
              PRIM_MEDIA_WIDTH_PIXELS,800,
              PRIM_MEDIA_PERMS_INTERACT,0x0,
@@ -51,7 +54,9 @@ default {
             {
                 llOwnerSay(llGetScriptName() + " Starting up..");
             }
-        media2Prim();
+        hailsURL = "https://hails.cc/";
+        hailsHome = hailsURL;
+        media2Prim();  //fix me
         llSetTimerEvent(10.0);
     }
     touch_start(integer total_number)
@@ -73,21 +78,14 @@ default {
             {
                 llOwnerSay("URL: (" + data + ") ");  //Debug only
             }
-            llSetPrimMediaParams(0,                         // Side to display the media on.
-            [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_CURRENT_URL,data,                   // The url currently showing
-             PRIM_MEDIA_HOME_URL,data,                      // The url if they hit 'home'
-             PRIM_MEDIA_HEIGHT_PIXELS,1024,                 // Height/width of media texture will be
-             PRIM_MEDIA_WIDTH_PIXELS,800,
-             PRIM_MEDIA_PERMS_INTERACT,0x0,
-             PRIM_MEDIA_CONTROLS,1,
-             PRIM_MEDIA_AUTO_SCALE,1,
-             PRIM_MEDIA_AUTO_LOOP,1]);
-             if (debug == TRUE)
+            hailsURL = data;
+            hailsHome = hailsURL;
+            media2Prim();
+            if (debug == TRUE)
             {
-                llOwnerSay("Sleeping for " + (string)hailsTimer);
+                llOwnerSay("Sleeping for " + (string)hailsTimer2);
             }
-             llSleep(90.0);
+             llSleep(hailsTimer2);
         }
     }
 } 
