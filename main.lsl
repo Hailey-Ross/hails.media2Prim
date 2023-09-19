@@ -12,6 +12,8 @@ integer debug = FALSE;
 string card = "hails.urls";
 string hailsURL;
 string hailsHome;
+string texture;
+string transparent;
 key linecountid;
 key lineid;
 integer linemax;
@@ -22,6 +24,15 @@ float hailsTimer2 = 90.0;
 integer random_integer(integer min, integer max)
 {
   return min + (integer)(llFrand( max - min + 1 ));
+}
+
+hailsSetup() //Setup Primitive
+{
+    llSetTexture(texture, 0); //Top
+    llSetTexture(texture, 1); //+x
+    llSetTexture(texture, 2); //+y
+    llSetTexture(texture, 3); //-x
+    llSetTexture(transparent, 4); //Bottom
 }
 
 media2Prim()
@@ -57,6 +68,7 @@ default {
             {
                 llOwnerSay(llGetScriptName() + " Starting up..");
             }
+        hailsSetup();
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
         media2Prim();
