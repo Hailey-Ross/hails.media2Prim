@@ -28,8 +28,9 @@ Etc..
 ## CHANGELOG
 
 ### Minor Patch 1
-*Unreleased*
-
+*Unreleased* - **09/19/2023**  
+__Version__: *0.1.0*  
+-  -  -  -  -  -  -  -  -  -
 - media2Prim() function fully implemented
    - Sets Variable then runs Function
 - New variables for easier customization
