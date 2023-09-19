@@ -9,6 +9,7 @@
 string hailsVersion = "0.1.0";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
+string hailsObjName = objectName + " | v" + hailsVersion;
 string hailsURL;
 string hailsHome;
 vector black = <0.67,0.67,0.67>; //Vector value for Black
@@ -26,8 +27,8 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive
 {
-    llSetObjectName(objectName + " | v" + hailsVersion)
-    if (debug == TRUE) { llOwnerSay(objectName + " Setting up Primitive..."); }
+    llSetObjectName(hailsObjName)
+    if (debug == TRUE) { llOwnerSay(hailsObjName + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
     llSetColor(black, 1);
     llSetColor(black, 2);
@@ -35,6 +36,7 @@ hailsSetup() //Setup Primitive
     llSetColor(black, 4);
     llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
     llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
+    if (debug == TRUE) { llOwnerSay(hailsObjName + " Setup is Complete."); }
     llSleep(0.27); //Take a nap ..zzZzz..
 }
 
@@ -57,7 +59,7 @@ default {
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
         {
-            if (debug == TRUE) { llOwnerSay(objectName + " has detected a change, Resetting Script. . ."); }
+            if (debug == TRUE) { llOwnerSay(hailsObjName + " has detected a change, Resetting Script. . ."); }
             llSleep(hailsTimer);
             llResetScript();
         }
@@ -66,7 +68,7 @@ default {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug == TRUE)
         {
-            llOwnerSay(objectName + " is Performing Start up..");
+            llOwnerSay(hailsObjName + " is Performing Start up..");
         }
         hailsSetup();
         hailsURL = "https://hails.cc/";
@@ -96,7 +98,7 @@ default {
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
-            if (debug == TRUE) { llOwnerSay(objectName + " is Sleeping for " + (string)hailsTimer2); } //Debug
+            if (debug == TRUE) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
             llSleep(hailsTimer2);
         }
     }
