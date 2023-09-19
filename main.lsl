@@ -1,3 +1,10 @@
+//Script Created by Hailey Enfield
+//Author Links: https://u.hails.cc/Links
+
+//TO USE THIS SCRIPT CREATE A NOTECARD IN THE PRIM WITH THIS SCRIPT 
+//NAME THE NOTECARD "hails.urls"
+//ONLY PLACE ONE IMAGE/MP4 LINK PER LINE!
+
 string card = "hails.urls";
 key linecountid;
 key lineid;
