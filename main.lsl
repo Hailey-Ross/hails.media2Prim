@@ -7,18 +7,20 @@
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
-integer debug = FALSE;
-
-string card = "hails.urls";
+string card = "hails.urls";      //Notecard name
+string objectName = "hails.media2Prim"; //Primitive name
 string hailsURL;
 string hailsHome;
-vector black = <0.67,0.67,0.67>;
+vector black = <0.67,0.67,0.67>; //Vector value for Black
 key linecountid;
 key lineid;
+integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
-integer mediaFace = 0; // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
-float hailsTimer = 2.25;
-float hailsTimer2 = 90.0;
+integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
+integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
+integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
+float hailsTimer = 2.25;         // Short pause timer
+float hailsTimer2 = 90.0;        // Long pause timer
 
 integer random_integer(integer min, integer max)
 {
@@ -27,14 +29,16 @@ integer random_integer(integer min, integer max)
 
 hailsSetup() //Setup Primitive
 {
-    
+    llSetObjectName(objectName)
     if (debug == TRUE) { llOwnerSay(llGetScriptName() + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
     llSetColor(black, 1);
     llSetColor(black, 2);
     llSetColor(black, 3);
     llSetColor(black, 4);
-    llSetAlpha(0.0, 4); //Bottom Transparent
+    llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
+    llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
+    llSleep(0.25);
 }
 
 media2Prim()
@@ -58,7 +62,7 @@ default {
         {
             if (debug == TRUE)
             {
-                llOwnerSay(llGetScriptName() + " Notecard changed, UPDATING..");
+                llOwnerSay(llGetScriptName() + " has detected a change, Resetting Script. . .");
             }
             llSleep(hailsTimer);
             llResetScript();
@@ -68,7 +72,7 @@ default {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug == TRUE)
         {
-            llOwnerSay(llGetScriptName() + " Performing Start up..");
+            llOwnerSay(llGetScriptName() + " is Performing Start up..");
         }
         hailsSetup();
         hailsURL = "https://hails.cc/";
@@ -98,11 +102,8 @@ default {
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
-            if (debug == TRUE)
-            {
-                llOwnerSay("Sleeping for " + (string)hailsTimer2);
-            }
-             llSleep(hailsTimer2);
+            if (debug == TRUE) { llOwnerSay(llGetScriptName() + " is Sleeping for " + (string)hailsTimer2); } //Debug
+            llSleep(hailsTimer2);
         }
     }
 } 
