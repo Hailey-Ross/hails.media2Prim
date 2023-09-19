@@ -6,7 +6,7 @@
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
-string hailsVersion = "0.1.0";  //Version Number
+string hailsVersion = "0.1.0";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string hailsURL;
