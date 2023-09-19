@@ -2,7 +2,7 @@
 
 Notecard-based (LSL) script for randomly grabbing urls and displaying media objects on a primitive face(s)
 
-### Example Notecard
+### Example Notecard:
 
 Unless you change it in the script, Notecard **MUST** be named `hails.urls`
 ```
@@ -14,7 +14,7 @@ https://some-url.tld/another-site.php
 Etc..
 ```
 
-### Usage
+### Usage:
 
 - Rez a new `Box/Square` Prim (*recommended shape*)
 - Create a Notecard, name it `hails.urls`
@@ -25,7 +25,7 @@ Etc..
 - Adjust the prim shape/position
 - Enjoy
 
-### TODO
+### TODO:
 
 - *TBD*
 
