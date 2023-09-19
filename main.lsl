@@ -66,10 +66,7 @@ default {
     }
     state_entry() {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
-        if (debug == TRUE)
-        {
-            llOwnerSay(hailsObjName + " is Performing Start up..");
-        }
+        if (debug == TRUE) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         hailsSetup();
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
@@ -91,10 +88,7 @@ default {
         }
         else if (id == lineid)
         {
-            if (debug == TRUE)
-            {
-                llOwnerSay(objectName + " has updated URL: (" + data + ") ");  //Debug only
-            }
+            if (debug == TRUE) { llOwnerSay(hailsObjName + " has updated URL: (" + data + ") "); }
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
