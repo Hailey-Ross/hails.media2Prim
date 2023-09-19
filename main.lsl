@@ -12,12 +12,11 @@ integer debug = FALSE;
 string card = "hails.urls";
 string hailsURL;
 string hailsHome;
-string texture;
-string transparent;
+vector black = <0.67,0.67,0.67>;
 key linecountid;
 key lineid;
 integer linemax;
-integer mediaFace = 0;
+integer mediaFace = 0; // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 float hailsTimer = 2.25;
 float hailsTimer2 = 90.0;
 
@@ -28,11 +27,9 @@ integer random_integer(integer min, integer max)
 
 hailsSetup() //Setup Primitive
 {
-    llSetTexture(texture, 0); //Top
-    llSetTexture(texture, 1); //+x
-    llSetTexture(texture, 2); //+y
-    llSetTexture(texture, 3); //-x
-    llSetTexture(transparent, 4); //Bottom
+    llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
+    llSetColor(black, ALL_SIDES); //Set Primitive Texture Color to Black
+    llSetAlpha(0.0, 4); //Bottom Transparent
 }
 
 media2Prim()
@@ -65,9 +62,9 @@ default {
     state_entry() {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug == TRUE)
-            {
-                llOwnerSay(llGetScriptName() + " Starting up..");
-            }
+        {
+            llOwnerSay(llGetScriptName() + " Performing Start up..");
+        }
         hailsSetup();
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
