@@ -25,7 +25,7 @@ Etc..
 - Adjust the prim shape/position
 - Enjoy
 
-## CHANGELOG
+## ChangeLog
 
 ### Minor Patch 1
 *Unreleased* - **09/19/2023**  
