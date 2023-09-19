@@ -1,1 +1,0 @@
-# hails.media2Prim
