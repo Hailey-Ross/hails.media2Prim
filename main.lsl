@@ -10,7 +10,7 @@ string card = "hails.urls";
 key linecountid;
 key lineid;
 integer linemax;  
-integer debug = TRUE;
+integer debug = FALSE;
 float hailsTimer = 2.25;
 
 integer random_integer(integer min, integer max)
