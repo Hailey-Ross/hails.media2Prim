@@ -15,8 +15,9 @@ Etc..
 
 ## Usage
 
+- Rez a new `Box` Prim (*recommended shape*)
 - Create a Notecard named `hails.urls`
-- Place your URLS to Images/Sites/Animations **one per line**
+- Place your peesonal URLS to Images/Sites/Animations **One per line**
 - Create a new script and copy/paste the code
 - Make any personal adjustments
 - Enjoy
