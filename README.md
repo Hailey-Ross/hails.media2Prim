@@ -1,6 +1,6 @@
 # hails.media2Prim
 
-Notecard based (LSL) script for randonly grabbing urls and displaying media objects on a prims face(s)
+Notecard based (LSL) script for randomly grabbing urls and displaying media objects on a primitive face(s)
 
 ## Example Notecard
 
@@ -22,5 +22,5 @@ Etc..
 - Create a new script and copy/paste the code over the default script
 - Make any personal adjustments
 - Save the script
-- Adjust the prim to where you would like it
+- Adjust the prim shape/position
 - Enjoy
