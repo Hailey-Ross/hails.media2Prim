@@ -1,5 +1,6 @@
 //Script Created by Hailey Enfield
 //Site: https://u.hails.cc/Links
+//Version: 0.1.0
 //PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
