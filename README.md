@@ -4,6 +4,7 @@ Notecard based (LSL) script for randonly grabbing urls and displaying media obje
 
 ## Example Notecard
 
+Unless you change it in the script, Notecard **MUST** be named `hails.urls`
 ```
 https://some-url.tld/link-here/image.png
 https://some-url.tld/link-here/animation.gif
