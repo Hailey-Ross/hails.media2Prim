@@ -1,12 +1,12 @@
 //Script Created by Hailey Enfield
 //Site: https://u.hails.cc/Links
-//Version: 0.1.0
 //PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
+string hailsVersion = "0.1.0";  //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string hailsURL;
@@ -22,14 +22,11 @@ integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM 
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 90.0;        // Long pause timer
 
-integer random_integer(integer min, integer max)
-{
-  return min + (integer)(llFrand( max - min + 1 ));
-}
+integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
 hailsSetup() //Setup Primitive
 {
-    llSetObjectName(objectName)
+    llSetObjectName(objectName + " | v" + hailsVersion)
     if (debug == TRUE) { llOwnerSay(llGetScriptName() + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
     llSetColor(black, 1);
@@ -38,7 +35,7 @@ hailsSetup() //Setup Primitive
     llSetColor(black, 4);
     llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
     llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
-    llSleep(0.25);
+    llSleep(0.27); //Take a nap ..zzZzz..
 }
 
 media2Prim()
@@ -78,7 +75,7 @@ default {
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
         media2Prim();
-        llSetTimerEvent(10.0);
+        llSetTimerEvent(12.0); //Allow Initial URL to load
     }
     touch_start(integer total_number)
     {
