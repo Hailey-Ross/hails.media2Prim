@@ -32,7 +32,7 @@ Etc..
   
 ## Change-log
 
-### Minor Patch 1
+### Minor Patch  
 *Unreleased* - **09/19/2023**  
 __Version__: *0.1.0*  
 -  -  -  -  -  -  -  -  -  -
