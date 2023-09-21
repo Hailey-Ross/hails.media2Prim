@@ -6,6 +6,9 @@
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
+key linecountid;
+key lineid;
+
 string hailsVersion = "0.1.0";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
@@ -13,9 +16,7 @@ string hailsObjName = objectName + " | v" + hailsVersion;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
-vector black = <0.67,0.67,0.67>; //Vector value for Black
-key linecountid;
-key lineid;
+
 integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
@@ -24,8 +25,11 @@ integer doSetup = TRUE;          //Whether to perform setup functionality
 integer forceHomeButton = TRUE;  // Force the HOME BUTTON to a specific URL at ALL times
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
+
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 75.2;               // Long pause timer
+
+vector black = <0.67,0.67,0.67>; //Vector value for Black
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
