@@ -52,3 +52,6 @@ __Version__: *0.1.0*
    - Set Object Name + Version
    - Set Phantom State
    - Set Grab/Drag Functionality State
+- Check prior Setup
+   - Checks for setup and if it cannot find transparency on the bottom it runs the function
+   - can be disabled by variable at the top of the script
