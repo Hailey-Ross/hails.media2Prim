@@ -34,10 +34,10 @@ hailsSetup() //Setup Primitive
     llSetObjectName(hailsObjName)
     if (debug) { llOwnerSay(hailsObjName + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
-    llSetColor(black, 1);  // Face +X
-    llSetColor(black, 2);  // Face +Y
-    llSetColor(black, 3);  // Face -X
-    llSetColor(black, 4);  // Bottom
+    llSetColor(black, 1);  //Face +X
+    llSetColor(black, 2);  //Face +Y
+    llSetColor(black, 3);  //Face -X
+    llSetColor(black, 4);  //Bottom
     llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
     llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
     hailsStartSetup = FALSE;
