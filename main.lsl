@@ -35,18 +35,29 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive
 {
-    llSetObjectName(hailsObjName)
-    if (debug) { llOwnerSay(hailsObjName + " Setting up Primitive..."); }
-    llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
-    llSetColor(black, 1);  //Face +X
-    llSetColor(black, 2);  //Face +Y
-    llSetColor(black, 3);  //Face -X
-    llSetColor(black, 4);  //Bottom
-    llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
-    llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
-    hailsStartSetup = FALSE;
-    if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
-    llSleep(0.27); //Take a nap ..zzZzz..
+    if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
+    {
+        hailsStartSetup = TRUE;
+    else
+        hailsStartSetup = FALSE;
+    }
+    if (hailsStartSetup & doSetup)
+    {
+        llSetObjectName(hailsObjName)
+        if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
+        llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
+        llSetColor(black, 1);  //Face +X
+        llSetColor(black, 2);  //Face +Y
+        llSetColor(black, 3);  //Face -X
+        llSetColor(black, 4);  //Bottom
+        llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
+        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
+        hailsStartSetup = FALSE;
+        if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
+        llSleep(0.27); //Take a nap ..zzZzz..
+    else
+        if (debug) { llOwnerSay(hailsObjName + " Skipping Setup Function. . ."); }
+    }
 }
 
 media2Prim()
@@ -54,10 +65,6 @@ media2Prim()
     if (forceHomeButton) 
     {
         hailsHome = forceHomeURL;
-    }
-    if (hailsStartSetup & doSetup)
-    {
-        hailsSetup();
     }
     llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
@@ -85,14 +92,9 @@ default {
     state_entry() {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
-        if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
-        {
-            hailsStartSetup = TRUE;
-        else
-            hailsStartSetup = FALSE;
-        }
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
+        hailsSetup();
         media2Prim();
         llSetTimerEvent(12.0); //Allow Initial URL to load
     }
