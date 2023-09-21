@@ -52,12 +52,12 @@ hailsSetup() //Setup Primitive
 media2Prim()
 {
     if (forceHomeButton) 
-        {
-            hailsHome = forceHomeURL;
+    {
+        hailsHome = forceHomeURL;
     }
     if (hailsStartSetup & doSetup)
-        {
-            hailsSetup();
+    {
+        hailsSetup();
     }
     llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
