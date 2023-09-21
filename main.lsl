@@ -12,6 +12,7 @@ string objectName = "hails.media2Prim"; //Primitive name
 string hailsObjName = objectName + " | v" + hailsVersion;
 string hailsURL;
 string hailsHome;
+string forceHomeURL = "https://hails.cc/";
 vector black = <0.67,0.67,0.67>; //Vector value for Black
 key linecountid;
 key lineid;
@@ -19,6 +20,9 @@ integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
+integer doSetup = TRUE;          //Whether to perform setup functionality
+integer forceHomeButton = TRUE;  // Force the HOME BUTTON to a specific URL at ALL times
+integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2;               // Long pause timer
@@ -28,7 +32,7 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 hailsSetup() //Setup Primitive
 {
     llSetObjectName(hailsObjName)
-    if (debug == TRUE) { llOwnerSay(hailsObjName + " Setting up Primitive..."); }
+    if (debug) { llOwnerSay(hailsObjName + " Setting up Primitive..."); }
     llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
     llSetColor(black, 1);
     llSetColor(black, 2);
@@ -36,12 +40,21 @@ hailsSetup() //Setup Primitive
     llSetColor(black, 4);
     llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
     llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
-    if (debug == TRUE) { llOwnerSay(hailsObjName + " Setup is Complete."); }
+    hailsStartSetup = FALSE;
+    if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
     llSleep(0.27); //Take a nap ..zzZzz..
 }
 
 media2Prim()
 {
+    if (forceHomeButton) 
+        {
+            hailsHome = forceHomeURL;
+    }
+    if (hailsStartSetup & doSetup)
+        {
+            hailsSetup();
+    }
     llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
              PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
@@ -52,7 +65,7 @@ media2Prim()
              PRIM_MEDIA_CONTROLS,1,
              PRIM_MEDIA_AUTO_SCALE,1,
              PRIM_MEDIA_AUTO_LOOP,1]);
-    if (debug == TRUE) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
+    if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
 
 default {
@@ -60,15 +73,15 @@ default {
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
         {
-            if (debug == TRUE) { llOwnerSay(hailsObjName + " has detected a change, Resetting Script. . ."); }
+            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Resetting Script. . ."); }
             llSleep(hailsTimer);
             llResetScript();
         }
     }
     state_entry() {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
-        if (debug == TRUE) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
-        hailsSetup();
+        if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
+        hailsStartSetup = TRUE;
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
         media2Prim();
@@ -93,7 +106,7 @@ default {
             hailsHome = hailsURL;
             media2Prim();
             hailsTimer2 = random_integer(59, 249);
-            if (debug == TRUE) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
+            if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
             llSleep(hailsTimer2);
         }
     }
