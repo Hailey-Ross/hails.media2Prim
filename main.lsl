@@ -21,7 +21,7 @@ integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE =
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 float hailsTimer = 2.25;         // Short pause timer
-float hailsTimer2 = 90.0;        // Long pause timer
+float hailsTimer2;               // Long pause timer
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
@@ -92,6 +92,7 @@ default {
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
+            hailsTimer2 = random_integer(59, 249);
             if (debug == TRUE) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
             llSleep(hailsTimer2);
         }
