@@ -25,7 +25,7 @@ integer forceHomeButton = TRUE;  // Force the HOME BUTTON to a specific URL at A
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 float hailsTimer = 2.25;         // Short pause timer
-float hailsTimer2;               // Long pause timer
+float hailsTimer2 = 75.2;               // Long pause timer
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
@@ -81,7 +81,12 @@ default {
     state_entry() {
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
-        hailsStartSetup = TRUE;
+        if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
+        {
+            hailsStartSetup = TRUE;
+        else
+            hailsStartSetup = FALSE;
+        }
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
         media2Prim();
