@@ -12,7 +12,7 @@ key lineid;
 string hailsVersion = "0.1.0";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
-string hailsObjName = objectName + " | v" + hailsVersion;
+string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
@@ -38,12 +38,14 @@ hailsSetup() //Setup Primitive
     if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
-    else
+    }
+    else {
         hailsStartSetup = FALSE;
     }
     if (hailsStartSetup & doSetup)
     {
-        llSetObjectName(hailsObjName)
+        hailsObjName = objectName + " | v" + hailsVersion;
+        llSetObjectName(hailsObjName);
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
         llSetColor(black, 1);  //Face +X
@@ -51,11 +53,13 @@ hailsSetup() //Setup Primitive
         llSetColor(black, 3);  //Face -X
         llSetColor(black, 4);  //Bottom
         llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
-        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab | STATUS_PHANTOM, doPhantom); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
+        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
+        llSetStatus(STATUS_PHANTOM, doPhantom);
         hailsStartSetup = FALSE;
         if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
         llSleep(0.27); //Take a nap ..zzZzz..
-    else
+    }
+    else {
         if (debug) { llOwnerSay(hailsObjName + " Skipping Setup Function. . ."); }
     }
 }
@@ -121,4 +125,4 @@ default {
             llSleep(hailsTimer2);
         }
     }
-} 
+}
