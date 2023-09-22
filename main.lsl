@@ -1,6 +1,7 @@
 //Script Created by Hailey Enfield
 //Site: https://u.hails.cc/Links
 //PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
+//Github: https://github.com/Hailey-Ross/hails.media2Prim
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
 //NAME THE NOTECARD "hails.urls"
@@ -29,14 +30,15 @@ integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM 
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 75.2;               // Long pause timer
 
-vector black = <0.67,0.67,0.67>; //Vector value for Black
+vector black = <0,0,0>;          //Vector value for Black
+vector white = <1.0,1.0,1.0>;
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
 hailsSetup() //Setup Primitive
 {
     hailsObjName = objectName + " v" + hailsVersion;
-    if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
+    if (llGetAlpha(5)) //Check face 4 for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
     }
@@ -48,11 +50,9 @@ hailsSetup() //Setup Primitive
         llSetObjectName(hailsObjName);
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
-        llSetColor(black, 1);  //Face +X
-        llSetColor(black, 2);  //Face +Y
-        llSetColor(black, 3);  //Face -X
-        llSetColor(black, 4);  //Bottom
-        llSetAlpha(0.0, 4); //Set Prim Bottom Transparent
+        llSetColor(black, ALL_SIDES);  //Set all faces to black
+        llSetColor(white, 0);
+        llSetAlpha(0.0, 5); //Set Prim Bottom Transparent
         llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
         llSetStatus(STATUS_PHANTOM, doPhantom);
         hailsStartSetup = FALSE;
