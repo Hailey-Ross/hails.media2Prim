@@ -1,7 +1,7 @@
 //Script Created by Hailey Enfield
 //Site: https://u.hails.cc/Links
-//PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 //Github: https://github.com/Hailey-Ross/hails.media2Prim
+//PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
 //NAME THE NOTECARD "hails.urls"
@@ -28,7 +28,8 @@ integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 
 float hailsTimer = 2.25;         // Short pause timer
-float hailsTimer2 = 75.2;               // Long pause timer
+float hailsTimer2 = 10.75;
+float hailsRandTimer;
 
 vector black = <0,0,0>;          //Vector value for Black
 vector white = <1.0,1.0,1.0>;
@@ -88,7 +89,7 @@ default {
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
         {
-            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Resetting Script. . ."); }
+            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
             llSleep(hailsTimer);
             llResetScript();
         }
@@ -100,7 +101,11 @@ default {
         hailsHome = hailsURL;
         hailsSetup();
         media2Prim();
-        llSetTimerEvent(12.0); //Allow Initial URL to load
+        llSleep(hailsTimer2); //allow initial URL to load
+        lineid = llGetNotecardLine(card, random_integer(0, linemax));
+        hailsRandTimer = random_integer(89, 199);
+        if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
+        llSetTimerEvent(hailsRandTimer);
     }
     touch_start(integer total_number)
     {
@@ -120,9 +125,8 @@ default {
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
-            hailsTimer2 = random_integer(59, 199);
-            if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
-            llSleep(hailsTimer2);
+            if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
+            llSleep(hailsTimer);
         }
     }
 }
