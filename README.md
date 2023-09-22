@@ -33,7 +33,7 @@ Etc..
 ## Change-log
 
 ### Minor Patch  
-*Unreleased* - **09/21/2023**  
+*RELEASED* - **09/22/2023**  
 __Version__: *0.1.0*  
 -  -  -  -  -  -  -  -  -  -
 - media2Prim() function fully implemented
@@ -54,4 +54,4 @@ __Version__: *0.1.0*
    - Set Grab/Drag Functionality State
 - Check prior Setup
    - Checks for setup and if it cannot find transparency on the bottom it runs the function
-   - can be disabled by variable at the top of the script
+   - can be disabled by a variable at the top of the script
