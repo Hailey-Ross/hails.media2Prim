@@ -17,7 +17,7 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = TRUE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
@@ -35,6 +35,7 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive
 {
+    hailsObjName = objectName + " v" + hailsVersion;
     if (llGetAlpha(4)) //Check face 4 for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -44,7 +45,6 @@ hailsSetup() //Setup Primitive
     }
     if (hailsStartSetup & doSetup)
     {
-        hailsObjName = objectName + " v" + hailsVersion;
         llSetObjectName(hailsObjName);
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
@@ -120,7 +120,7 @@ default {
             hailsURL = data;
             hailsHome = hailsURL;
             media2Prim();
-            hailsTimer2 = random_integer(59, 249);
+            hailsTimer2 = random_integer(59, 199);
             if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer2); } //Debug
             llSleep(hailsTimer2);
         }
