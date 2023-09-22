@@ -44,7 +44,7 @@ hailsSetup() //Setup Primitive
     }
     if (hailsStartSetup & doSetup)
     {
-        hailsObjName = objectName + " | v" + hailsVersion;
+        hailsObjName = objectName + " v" + hailsVersion;
         llSetObjectName(hailsObjName);
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
