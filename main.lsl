@@ -98,13 +98,16 @@ default {
         media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
-        hailsRandTimer = random_integer(89, 199);
+        hailsRandTimer = random_integer(59, 199);
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
         llSetTimerEvent(hailsRandTimer);
     }
     touch_start(integer total_number)
     {
+        hailsRandTimer = random_integer(59, 199);
+        llSetTimerEvent(hailsRandTimer);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
+        llSleep(0.25);
     }
     timer() {
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
@@ -120,6 +123,8 @@ default {
             hailsURL = data;
             hailsHome = data;
             media2Prim();
+            hailsRandTimer = random_integer(59, 199);
+            llSetTimerEvent(hailsRandTimer);
             if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
             llSleep(hailsTimer);
         }
