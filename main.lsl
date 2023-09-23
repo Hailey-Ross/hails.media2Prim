@@ -18,12 +18,11 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = TRUE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
-integer forceHomeButton = TRUE;  // Force the HOME BUTTON to a specific URL at ALL times
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
 
@@ -67,14 +66,10 @@ hailsSetup() //Setup Primitive
 
 media2Prim()
 {
-    if (forceHomeButton) 
-    {
-        hailsHome = forceHomeURL;
-    }
     llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
              PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
+             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
              PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
              PRIM_MEDIA_WIDTH_PIXELS,800,
              PRIM_MEDIA_PERMS_INTERACT,0x0,
@@ -123,7 +118,7 @@ default {
         else if (id == lineid)
         {
             hailsURL = data;
-            hailsHome = hailsURL;
+            hailsHome = data;
             media2Prim();
             if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
             llSleep(hailsTimer);
