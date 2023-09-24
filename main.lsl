@@ -31,32 +31,32 @@ float hailsTimer2 = 10.75;
 float hailsRandTimer;
 
 vector black = <0,0,0>;          //Vector value for Black
-vector white = <1.0,1.0,1.0>;
+vector white = <1.0,1.0,1.0>;    //Vector value for White
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
-hailsSetup() //Setup Primitive
+hailsSetup() //Setup Primitive Function
 {
     llSetObjectDesc("v" + hailsVersion);
     llSetObjectName(objectName);
-    if (llGetAlpha(5)) //Check face 5 for transparency to test for prior setup
+    if (llGetAlpha(5)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
     }
     else {
         hailsStartSetup = FALSE;
     }
-    if (hailsStartSetup & doSetup)
+    if (hailsStartSetup & doSetup) //main function logic
     {
-        if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
-        llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
+        if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
+        llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blankf from default wood texture
         llSetColor(black, ALL_SIDES);  //Set all faces to black
-        llSetColor(white, 0);
+        llSetColor(white, mediaFace); //Set Media Face to white
         llSetAlpha(0.0, 5); //Set Prim Bottom Transparent
-        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality and whether Primitive is Phantom
-        llSetStatus(STATUS_PHANTOM, doPhantom);
-        hailsStartSetup = FALSE;
-        if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
+        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality
+        llSetStatus(STATUS_PHANTOM, doPhantom); //whether Primitive is Phantom
+        hailsStartSetup = FALSE; //Set variable to disable setup if called again during this run
+        if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); } //debug
         llSleep(0.27); //Take a nap ..zzZzz..
     }
     else {
