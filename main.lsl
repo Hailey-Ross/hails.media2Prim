@@ -25,6 +25,7 @@ integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON 
 integer doSetup = TRUE;          //Whether to perform setup functionality
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | +X = 4 | BOTTOM = 5
+integer oppositeFace = 5;        // Set to the opposite side of mediaFace variable!
 
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 10.75;
@@ -39,7 +40,7 @@ hailsSetup() //Setup Primitive Function
 {
     llSetObjectDesc("v" + hailsVersion);
     llSetObjectName(objectName);
-    if (llGetAlpha(5)) //Check face 5 (bottom) for transparency to test for prior setup
+    if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
     }
@@ -52,7 +53,8 @@ hailsSetup() //Setup Primitive Function
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blankf from default wood texture
         llSetColor(black, ALL_SIDES);  //Set all faces to black
         llSetColor(white, mediaFace); //Set Media Face to white
-        llSetAlpha(0.0, 5); //Set Prim Bottom Transparent
+        llSetAlpha(1.0, ALL_SIDES); //Ensure every face is not transparent
+        llSetAlpha(0.0, oppositeFace); //Set Prim Bottom Transparent
         llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality
         llSetStatus(STATUS_PHANTOM, doPhantom); //whether Primitive is Phantom
         hailsStartSetup = FALSE; //Set variable to disable setup if called again during this run
