@@ -17,14 +17,17 @@ Notecard-based (LSL) script for randomly grabbing urls and displaying media obje
 
 ### Example Notecard:
 
-Unless you change it in the script, Notecard **MUST** be named `hails.urls`
+Unless you change it in the script, Notecard **MUST** be named `hails.urls`.  
+These are example URLs to test out the script.
 ```
-https://some-url.tld/link-here/image.png
-https://some-url.tld/link-here/animation.gif
-https://some-url.tld/link-here/video.mp4
-https://some-url.tld/website.html
-https://some-url.tld/another-site.php
-Etc..
+https://i.imgur.com/cc957Ax.mp4
+https://i.imgur.com/7iq48DN.mp4
+https://i.imgur.com/S02CemU.mp4
+https://i.imgur.com/fU7pIfg.mp4
+https://i.imgur.com/xjGh9cM.mp4
+https://i.imgur.com/HZ1YIsp.mp4
+https://i.imgur.com/dg1UUQ3.mp4
+https://i.imgur.com/dc9RNYg.mp4
 ```
 
 ### Usage:
