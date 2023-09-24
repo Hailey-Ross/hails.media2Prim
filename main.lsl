@@ -10,10 +10,10 @@
 key linecountid;
 key lineid;
 
-string hailsVersion = "0.1.0";   //Version Number
+string hailsVersion = "0.1.0a";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
-string hailsObjName = "hails.script";
+string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
@@ -24,7 +24,7 @@ integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE =
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
-integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | BOTTOM = 4
+integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | +X = 4 | BOTTOM = 5
 
 float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 10.75;
@@ -37,8 +37,8 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive
 {
-    hailsObjName = objectName + " v" + hailsVersion;
-    llSetObjectName(hailsObjName);
+    llSetObjectDesc("v" + hailsVersion);
+    llSetObjectName(objectName);
     if (llGetAlpha(5)) //Check face 5 for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -60,7 +60,7 @@ hailsSetup() //Setup Primitive
         llSleep(0.27); //Take a nap ..zzZzz..
     }
     else {
-        if (debug) { llOwnerSay(hailsObjName + " Skipping Setup Function. . ."); }
+        if (debug) { llOwnerSay(hailsObjName + " SKIP Setup Function. . ."); }
     }
 }
 
@@ -90,6 +90,7 @@ default {
         }
     }
     state_entry() {
+        hailsObjName = objectName + ":";
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         hailsURL = "https://hails.cc/";
