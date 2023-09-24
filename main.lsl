@@ -13,12 +13,12 @@ key lineid;
 string hailsVersion = "0.1.0";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
-string hailsObjName;
+string hailsObjName = "hails.script";
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = TRUE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
@@ -38,7 +38,8 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 hailsSetup() //Setup Primitive
 {
     hailsObjName = objectName + " v" + hailsVersion;
-    if (llGetAlpha(5)) //Check face 4 for transparency to test for prior setup
+    llSetObjectName(hailsObjName);
+    if (llGetAlpha(5)) //Check face 5 for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
     }
@@ -47,7 +48,6 @@ hailsSetup() //Setup Primitive
     }
     if (hailsStartSetup & doSetup)
     {
-        llSetObjectName(hailsObjName);
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); }
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blank
         llSetColor(black, ALL_SIDES);  //Set all faces to black
@@ -104,10 +104,12 @@ default {
     }
     touch_start(integer total_number)
     {
+        if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199);
         llSetTimerEvent(hailsRandTimer);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
-        llSleep(0.25);
+        if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
+        llSleep(0.25); //Take another nap ..zzZzz..
     }
     timer() {
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
@@ -125,6 +127,7 @@ default {
             media2Prim();
             hailsRandTimer = random_integer(59, 199);
             llSetTimerEvent(hailsRandTimer);
+            if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
             if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
             llSleep(hailsTimer);
         }
