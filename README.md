@@ -51,6 +51,7 @@ __Version__: *0.1.0a*
    - Cleaned up function ordering
    - Moved llSetObjectName() functionality to always run
    - llSetColor(white, 0) now uses mediaFace variable to always match customization
+   - New oppositeFace variable for customization
 - Verbose Debug
    - Added additional Debug output to Touch Function
    - Added additional Debug output to RNG for NC line choice
