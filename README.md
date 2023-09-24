@@ -2,6 +2,15 @@
 
 Notecard-based (LSL) script for randomly grabbing urls and displaying media objects on a primitive face(s)
 
+### Table of Contents
+- [Preview](#example)
+- [Example Notecard](#example-notecard)
+- [Usage](#usage)
+- [Change-log](#change-log)
+   - [Minor Patch 2](#minor-patch-2)
+   - [Minor Patch](#minor-patch)
+
+
 ### Example
 
 <a href="https://i.imgur.com/lMoRjGc.gif">Preview</a>
