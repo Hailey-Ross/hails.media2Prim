@@ -37,7 +37,7 @@ Etc..
 ## Change-log
 
 ### Minor Patch 
-*RELEASED*: **09/24/23**
+*RELEASED*: **09/24/23**  
 __Version__: *0.1.0a*  
 -  -  -  -  -  -  -  -  -  -
 - TimerEvents
