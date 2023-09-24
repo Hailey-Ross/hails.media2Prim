@@ -37,15 +37,24 @@ Etc..
 ## Change-log
 
 ### Minor Patch 
-*RELEASED* **09/24/23**
-__Version__:*0.1.0a*  
+*RELEASED*: **09/24/23**
+__Version__: *0.1.0a*  
 -  -  -  -  -  -  -  -  -  -
+- TimerEvents
+   - Now properly reset on Touch
+   - Now trigger new TimerEvent length on image/page changes
 - Touch Function Fixes
-   - Fixed TimerEvents
+   - Properly Resets TimerEvents
+   - Randomized TimerEvent length(s) after Touch
    - Added proper randomization to url choice
+- Setup Function
+   - Cleaned up function ordering
+   - Moved llSetObjectName() functionality to always run
+   - llSetColor(white, 0) now uses mediaFace variable to always match customization
 - Verbose Debug
    - Added additional Debug output to Touch Function
    - Added additional Debug output to RNG for NC line choice
+   - Fixed Debug variables that were not matching the variable being called by functions
 - Optimizations to Code workflow
    - Cleaned up the ordering of script functionality
    - Cleaned up readability
