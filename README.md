@@ -17,7 +17,7 @@ Notecard-based (LSL) script for randomly grabbing urls and displaying media obje
 
 ### Example Notecard:
 
-Unless you change it in the script, Notecard **MUST** be named `hails.urls`.  
+Unless you change it in the script, Notecard **MUST** be named `hails.urls`  
 These are example URLs to test out the script.
 ```
 https://i.imgur.com/cc957Ax.mp4
