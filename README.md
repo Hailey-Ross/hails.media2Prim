@@ -74,3 +74,4 @@ __Version__: *0.1.0*
 - Check prior Setup
    - Checks for setup and if it cannot find transparency on the bottom it runs the function
    - can be disabled by a variable at the top of the script
+-  -  -  -  -  -  -  -  -  -
