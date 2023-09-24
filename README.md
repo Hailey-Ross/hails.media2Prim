@@ -36,6 +36,21 @@ Etc..
   
 ## Change-log
 
+### Minor Patch 
+*RELEASED* **09/24/23**
+__Version__:*0.1.0a*  
+-  -  -  -  -  -  -  -  -  -
+- Touch Function Fixes
+   - Fixed TimerEvents
+   - Added proper randomization to url choice
+- Verbose Debug
+   - Added additional Debug output to Touch Function
+   - Added additional Debug output to RNG for NC line choice
+- Optimizations to Code workflow
+   - Cleaned up the ordering of script functionality
+   - Cleaned up readability
+   - Removed unused/superfluous code
+
 ### Minor Patch  
 *RELEASED* - **09/22/2023**  
 __Version__: *0.1.0*  
