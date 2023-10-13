@@ -9,6 +9,7 @@
 
 key linecountid;
 key lineid;
+key MyKey;
 
 string hailsVersion = "v0.1.1 - RC 1";   //Version Number
 string card = "hails.urls";      //Notecard name
@@ -18,8 +19,9 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = TRUE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer linemax;
+integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
+integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
@@ -40,6 +42,7 @@ hailsSetup() //Setup Primitive Function
 {
     llSetObjectDesc("v" + hailsVersion);
     llSetObjectName(objectName);
+    MyKey = llGetOwner();
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -68,18 +71,7 @@ hailsSetup() //Setup Primitive Function
 
 media2Prim()
 {
-    list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
-    integer numOfAvatars = llGetListLength(avatarsInRegion);
-    // if no avatars then abort
-    if (!numOfAvatars)
-        {
-        if (debug) { llOwnerSay(hailsObjName + " Nobody nearby, Sleeping.."); }
-        llSleep(5);
-        return;
-        }
-    else
-        {
-        llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
+    llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
             PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
@@ -89,9 +81,22 @@ media2Prim()
             PRIM_MEDIA_CONTROLS,1,
             PRIM_MEDIA_AUTO_SCALE,1,
             PRIM_MEDIA_AUTO_LOOP,1]);
-        if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
-    }
+    if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
+
+checkSimPop()
+{
+    list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
+    integer numOfAvatars = llGetListLength(avatarsInRegion);
+    if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
+    // if no avatars then hibernate
+    while (!numOfAvatars)
+    {
+        if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); }
+        llSleep(15);
+        }
+    if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
+    }
 
 default {
     changed(integer change)
@@ -112,6 +117,7 @@ default {
         hailsSetup();
         media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
+        checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         hailsRandTimer = random_integer(59, 199);
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
@@ -126,8 +132,9 @@ default {
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
         llSleep(0.25); //Take another nap ..zzZzz..
     }
-    timer() {
-        lineid = llGetNotecardLine(card, random_integer(0, linemax));
+    timer() {  
+            checkSimPop();
+            lineid = llGetNotecardLine(card, random_integer(0, linemax));
     }
    dataserver(key id, string data)
     {
