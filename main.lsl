@@ -69,29 +69,29 @@ hailsSetup() //Setup Primitive Function
 media2Prim()
 {
     list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
-        integer numOfAvatars = llGetListLength(avatarsInRegion);
+    integer numOfAvatars = llGetListLength(avatarsInRegion);
 
-        // if no avatars, abort avatar listing process and give a short notice
-        if (!numOfAvatars)
+    // if no avatars, abort avatar listing process and give a short notice
+    if (!numOfAvatars)
         {
-            if (debug) { llOwnerSay(hailsObjName + " Nobody nearby, Sleeping.."); }
-            llSleep(5);
-        }
-
-        integer index;
-        if (index < numOfAvatars)
-        {
-            llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
-                [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-                PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
-                PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
-                PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
-                PRIM_MEDIA_WIDTH_PIXELS,800,
-                PRIM_MEDIA_PERMS_INTERACT,0x0,
-                PRIM_MEDIA_CONTROLS,1,
-                PRIM_MEDIA_AUTO_SCALE,1,
-                PRIM_MEDIA_AUTO_LOOP,1]);
-            if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
+        if (debug) { llOwnerSay(hailsObjName + " Nobody nearby, Sleeping.."); }
+        llSleep(5);
+    }
+    
+    integer index;
+    if (index < numOfAvatars)
+    {
+        llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
+            [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
+            PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
+            PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
+            PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
+            PRIM_MEDIA_WIDTH_PIXELS,800,
+            PRIM_MEDIA_PERMS_INTERACT,0x0,
+            PRIM_MEDIA_CONTROLS,1,
+            PRIM_MEDIA_AUTO_SCALE,1,
+            PRIM_MEDIA_AUTO_LOOP,1]);
+        if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
     }
 }
 
