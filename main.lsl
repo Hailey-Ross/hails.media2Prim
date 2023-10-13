@@ -18,6 +18,7 @@ string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
+string objDesc;
 
 integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
@@ -40,8 +41,20 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive Function
 {
-    llSetObjectDesc("v" + hailsVersion);
-    llSetObjectName(objectName);
+    objDesc = llGetObjectDesc();
+    if (objDesc == "debug")
+    {
+        debug = TRUE;
+        debugIM = TRUE;
+        llOwnerSay(hailsObjName + " DEBUG mode Enabled..");
+        llInstantMessage(MyKey, "IM DEBUG mode Enabled..");
+        llSetObjectDesc("v" + hailsVersion + " - DEBUG");
+        llSetObjectName(objectName + " - DEBUG");
+    }
+    else {
+        llSetObjectDesc("v" + hailsVersion);
+        llSetObjectName(objectName);
+    }
     MyKey = llGetOwner();
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
