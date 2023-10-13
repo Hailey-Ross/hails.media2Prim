@@ -10,7 +10,7 @@
 key linecountid;
 key lineid;
 
-string hailsVersion = "0.1.0a";   //Version Number
+string hailsVersion = "v0.1.1 - RC 1";   //Version Number
 string card = "hails.urls";      //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string hailsObjName;
@@ -18,7 +18,7 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = TRUE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
@@ -68,17 +68,31 @@ hailsSetup() //Setup Primitive Function
 
 media2Prim()
 {
-    llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
-            [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
-             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
-             PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
-             PRIM_MEDIA_WIDTH_PIXELS,800,
-             PRIM_MEDIA_PERMS_INTERACT,0x0,
-             PRIM_MEDIA_CONTROLS,1,
-             PRIM_MEDIA_AUTO_SCALE,1,
-             PRIM_MEDIA_AUTO_LOOP,1]);
-    if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
+    list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
+        integer numOfAvatars = llGetListLength(avatarsInRegion);
+
+        // if no avatars, abort avatar listing process and give a short notice
+        if (!numOfAvatars)
+        {
+            if (debug) { llOwnerSay(hailsObjName + " Nobody nearby, Sleeping.."); }
+            llSleep(5);
+        }
+
+        integer index;
+        if (index < numOfAvatars)
+        {
+            llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
+                [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
+                PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
+                PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
+                PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
+                PRIM_MEDIA_WIDTH_PIXELS,800,
+                PRIM_MEDIA_PERMS_INTERACT,0x0,
+                PRIM_MEDIA_CONTROLS,1,
+                PRIM_MEDIA_AUTO_SCALE,1,
+                PRIM_MEDIA_AUTO_LOOP,1]);
+            if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
+    }
 }
 
 default {
