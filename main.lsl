@@ -70,17 +70,15 @@ media2Prim()
 {
     list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
     integer numOfAvatars = llGetListLength(avatarsInRegion);
-
-    // if no avatars, abort avatar listing process and give a short notice
+    // if no avatars then abort
     if (!numOfAvatars)
         {
         if (debug) { llOwnerSay(hailsObjName + " Nobody nearby, Sleeping.."); }
         llSleep(5);
-    }
-    
-    integer index;
-    if (index < numOfAvatars)
-    {
+        return;
+        }
+    else
+        {
         llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
             [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
             PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
