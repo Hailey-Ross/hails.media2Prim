@@ -20,7 +20,7 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
@@ -99,17 +99,26 @@ media2Prim()
 
 checkSimPop()
 {
-    list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
-    integer numOfAvatars = llGetListLength(avatarsInRegion);
+    integer numOfAvatars = llGetRegionAgentCount();
     integer counter;
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     // if no avatars then hibernate
-    if (!numOfAvatars)
+    while (numOfAvatars < 1)
     {
-        if (counter < 1) { if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } llSetTimerEvent(0.0); }
+        if (counter < 1) 
+        {
+            llSetTimerEvent(0.0);
+            hailsURL = "https://hails.cc/";
+            hailsHome = hailsURL;
+            media2Prim();
+            if (debugIM) 
+            { 
+            llInstantMessage(MyKey, "Sim is empty, hibernating.."); 
+            } 
+        }
         llSleep(15);
         if (counter > 1000) { counter = 1; } else { ++counter; }
-        return;
+        numOfAvatars = llGetRegionAgentCount();
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
     counter = 0;
