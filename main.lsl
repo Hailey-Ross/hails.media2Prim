@@ -20,7 +20,7 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
