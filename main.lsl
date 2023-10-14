@@ -34,8 +34,23 @@ float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 10.75;
 float hailsRandTimer;
 
-vector black = <0,0,0>;          //Vector value for Black
-vector white = <1.0,1.0,1.0>;    //Vector value for White
+vector black = <0,0,0>;
+vector white = <1.0,1.0,1.0>;
+vector navy = <0,0.122,0.247>;
+vector blue = <0,0.455,0.851>;
+vector aqua = <0.498,0.859,1>;
+vector teal = <0.224,0.8,0.8>;
+vector olive = <0.239,0.6,0.439>;
+vector green = <0.18,0.8,0.251>;
+vector lime = <0.004,1,0.439>;
+vector yellow = <1,0.863,0>;
+vector orange = <1,0.522,0.106>;
+vector red = <1,0.255,0.212>;
+vector maroon = <0.522,0.078,0.294>;
+vector fuchsia = <0.941,0.071,0.745>;
+vector purple = <0.694,0.051,0.788>;
+vector silver = <0.867,0.867,0.867>;
+vector gray = <0.667,0.667,0.667>;
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
