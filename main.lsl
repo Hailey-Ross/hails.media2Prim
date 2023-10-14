@@ -20,6 +20,7 @@ string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
+string hailsTexture = "9d0c0e2d-852e-b2d0-9e5e-a64b2f78bc3a";
 
 integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
@@ -63,20 +64,21 @@ checkDebug()
     else if (objDesc == "debug") { debug = TRUE; debugIM = TRUE; llOwnerSay(hailsObjName + " DEBUG mode Enabled.."); llInstantMessage(MyKey, "IM DEBUG mode Enabled.."); llSetObjectDesc("v" + hailsVersion + " - DEBUG"); llSetObjectName(objectName + " - DEBUG"); }
     else if (objDesc == "silent") { debug = FALSE; debugIM = TRUE; llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
     else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); llSetObjectDesc("v" + hailsVersion); }
-    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llClearPrimMedia(mediaFace); llResetScript(); }
+    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llClearPrimMedia(mediaFace); hailsSetup(); llResetScript(); }
+    else if (objDesc == "dosetup") { llSetObjectDesc("v" + hailsVersion); doSetup = TRUE; hailsStartSetup = TRUE; hailsSetup(); }
     else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
 }
 
 hailsSetup() //Setup Primitive Function
 {
     MyKey = llGetOwner();
-    checkDebug(); llClearPrimMedia(mediaFace);
+    llClearPrimMedia(mediaFace);
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
-    if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; }
+    if (hailsStartSetup & doSetup) { if (debug) { llOwnerSay(hailsObjName + " StartSetup already TRUE. . .SKIP."); } else { if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; } } }
     if (hailsStartSetup & doSetup) //main function logic
     {
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
-        llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); hailsStartSetup = FALSE;
+        llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetTexture(hailsTexture, mediaFace); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); hailsStartSetup = FALSE;
         if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
         llSleep(0.27); //Take a nap ..zzZzz..
     }
@@ -128,8 +130,6 @@ default {
         hailsSetup();
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
-        hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim();
-        llSleep(hailsTimer2); //allow initial URL to load
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         hailsRandTimer = random_integer(59, 199);
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
@@ -137,7 +137,7 @@ default {
     }
     touch_start(integer total_number)
     {
-        checkDebug(); llClearPrimMedia(mediaFace);
+        checkDebug(); llSetTexture(hailsTexture, mediaFace); llClearPrimMedia(mediaFace);
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199); llSetTimerEvent(0.0);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
