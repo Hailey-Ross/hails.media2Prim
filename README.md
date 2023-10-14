@@ -7,6 +7,7 @@ Notecard-based (LSL) script for randomly grabbing urls and displaying media obje
 - [Example Notecard](#example-notecard)
 - [Usage](#usage)
 - [Change-log](#change-log)
+   - [Minor Patch 3](#minor-patch-3) 
    - [Minor Patch 2](#minor-patch-2)
    - [Minor Patch](#minor-patch)
 
