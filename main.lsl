@@ -12,7 +12,7 @@ key lineid;
 key MyKey;
 
 string hailsVersion = "0.1.1";   //Version Number
-string rcInfo = "Release_Candidate 2";
+string rcInfo = "Release_Candidate 3";
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string objDesc;
@@ -23,7 +23,7 @@ string forceHomeURL = "https://hails.cc/";
 
 integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc = TRUE;
+integer rc = TRUE;               //Dev Variable
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
@@ -62,7 +62,8 @@ checkDebug()
     if (objDesc == "v" + hailsVersion + " - DEBUG") { llOwnerSay(hailsObjName + " DEBUG enabled.. SKIP"); }
     else if (objDesc == "debug") { debug = TRUE; debugIM = TRUE; llOwnerSay(hailsObjName + " DEBUG mode Enabled.."); llInstantMessage(MyKey, "IM DEBUG mode Enabled.."); llSetObjectDesc("v" + hailsVersion + " - DEBUG"); llSetObjectName(objectName + " - DEBUG"); }
     else if (objDesc == "silent") { debug = FALSE; debugIM = TRUE; llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
-    else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); }
+    else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); llSetObjectDesc("v" + hailsVersion); }
+    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llResetScript(); }
     else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
 }
 
@@ -70,7 +71,7 @@ hailsSetup() //Setup Primitive Function
 {
     MyKey = llGetOwner();
     checkDebug();
-    if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); } else { llSetText("", ZERO_VECTOR, 0.0); }
+    if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
