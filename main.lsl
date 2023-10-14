@@ -106,6 +106,7 @@ checkSimPop()
     while (!numOfAvatars)
     {
         if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); }
+        llSetTimerEvent(0.0);
         llSleep(15);
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
