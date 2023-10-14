@@ -58,6 +58,7 @@ checkDebug()
     else if (objDesc == "silent")
     {
         debug = FALSE;
+        debugIM = TRUE;
         llSetObjectDesc("v" + hailsVersion);
         llSetObjectName(objectName);
     }
