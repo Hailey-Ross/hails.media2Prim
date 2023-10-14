@@ -39,11 +39,14 @@ vector white = <1.0,1.0,1.0>;    //Vector value for White
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
-hailsSetup() //Setup Primitive Function
+checkDebug()
 {
-    MyKey = llGetOwner();
     objDesc = llGetObjectDesc();
-    if (objDesc == "debug")
+    if (objDesc == "v" + hailsVersion + " - DEBUG")
+    {
+        llOwnerSay(hailsObjName + " DEBUG enabled.. SKIP");
+    }
+    else if (objDesc == "debug")
     {
         debug = TRUE;
         debugIM = TRUE;
@@ -52,10 +55,23 @@ hailsSetup() //Setup Primitive Function
         llSetObjectDesc("v" + hailsVersion + " - DEBUG");
         llSetObjectName(objectName + " - DEBUG");
     }
-    else {
+    else if (objDesc == "silent")
+    {
+        debug = FALSE;
         llSetObjectDesc("v" + hailsVersion);
         llSetObjectName(objectName);
     }
+    else 
+    {
+        llSetObjectDesc("v" + hailsVersion);
+        llSetObjectName(objectName);
+    }
+}
+
+hailsSetup() //Setup Primitive Function
+{
+    MyKey = llGetOwner();
+    checkDebug();
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -107,11 +123,18 @@ checkSimPop()
     }
 
 default {
+    on_rez(integer start_param)
+    {
+        checkDebug();
+        llSleep(0.75);
+        llResetScript(); //ensure script startup state on rez
+    }
     changed(integer change)
     {
-        if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
+        if (change & (CHANGED_OWNER | CHANGED_INVENTORY | CHANGED_REGION))
         {
-            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); llSetObjectDesc("debug"); }
+            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
+            checkDebug();
             llSleep(hailsTimer);
             llResetScript();
         }
@@ -134,6 +157,7 @@ default {
     }
     touch_start(integer total_number)
     {
+        checkDebug();
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199);
         llSetTimerEvent(hailsRandTimer);
@@ -143,6 +167,7 @@ default {
     }
     timer() 
     {  
+        checkDebug();
         checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
     }
