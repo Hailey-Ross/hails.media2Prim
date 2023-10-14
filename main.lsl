@@ -149,7 +149,6 @@ default {
         hailsSetup();
         media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
-        checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         hailsRandTimer = random_integer(59, 199);
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
