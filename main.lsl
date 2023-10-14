@@ -110,7 +110,6 @@ checkSimPop()
     integer numOfAvatars = llGetRegionAgentCount();
     integer counter;
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
-    // if no avatars then hibernate
     while (numOfAvatars < 1)
     {
         if (counter < 1) { llSetTimerEvent(0.0); hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim(); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
@@ -118,8 +117,8 @@ checkSimPop()
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
         if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); }
-        }
-    if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
+    }
+    if (debug) { llOwnerSay(hailsObjName + " Sim Pop check PASSED."); }
     counter = 0;
     }
 
@@ -141,13 +140,13 @@ default {
         }
     }
     state_entry() {
-        if (debug) { llSetObjectDesc("debug"); }
+        if (debug & debugIM) { llSetObjectDesc("debug"); }
         hailsObjName = objectName + ":";
+        hailsSetup();
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
-        hailsSetup();
         media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
