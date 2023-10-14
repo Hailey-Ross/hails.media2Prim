@@ -101,15 +101,18 @@ checkSimPop()
 {
     list avatarsInRegion = llGetAgentList(AGENT_LIST_REGION, []);
     integer numOfAvatars = llGetListLength(avatarsInRegion);
+    integer counter;
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     // if no avatars then hibernate
     while (!numOfAvatars)
     {
-        if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); }
+        if (counter < 1) { if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
         llSetTimerEvent(0.0);
         llSleep(15);
+        if (counter > 1) { counter = 1; } else { ++counter; }
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
+    counter = 0;
     }
 
 default {
