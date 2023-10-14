@@ -11,8 +11,8 @@ key linecountid;
 key lineid;
 key MyKey;
 
-string hailsVersion = "v0.1.1 - RC 1";   //Version Number
-string card = "hails.urls";      //Notecard name
+string hailsVersion = "0.1.1 - RC 1";   //Version Number
+string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string hailsObjName;
 string hailsURL;
@@ -41,6 +41,7 @@ integer random_integer(integer min, integer max) { return min + (integer)(llFran
 
 hailsSetup() //Setup Primitive Function
 {
+    MyKey = llGetOwner();
     objDesc = llGetObjectDesc();
     if (objDesc == "debug")
     {
@@ -55,7 +56,6 @@ hailsSetup() //Setup Primitive Function
         llSetObjectDesc("v" + hailsVersion);
         llSetObjectName(objectName);
     }
-    MyKey = llGetOwner();
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -116,12 +116,13 @@ default {
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
         {
-            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
+            if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); llSetObjectDesc("debug"); }
             llSleep(hailsTimer);
             llResetScript();
         }
     }
     state_entry() {
+        if (debug) { llSetObjectDesc("debug"); }
         hailsObjName = objectName + ":";
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
