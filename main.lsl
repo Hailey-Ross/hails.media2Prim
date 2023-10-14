@@ -119,6 +119,7 @@ checkSimPop()
         llSleep(15);
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
+        if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); }
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
     counter = 0;
