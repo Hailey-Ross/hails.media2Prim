@@ -11,7 +11,7 @@ key linecountid;
 key lineid;
 key MyKey;
 
-string hailsVersion = "0.1.1";   //Version Number
+string hailsVersion = "0.1.1a";   //Version Number
 string rcInfo;
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
