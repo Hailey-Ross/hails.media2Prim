@@ -84,16 +84,7 @@ hailsSetup() //Setup Primitive Function
 
 media2Prim()
 {
-    llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
-            [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-            PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
-            PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
-            PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
-            PRIM_MEDIA_WIDTH_PIXELS,800,
-            PRIM_MEDIA_PERMS_INTERACT,0x0,
-            PRIM_MEDIA_CONTROLS,1,
-            PRIM_MEDIA_AUTO_SCALE,1,
-            PRIM_MEDIA_AUTO_LOOP,1]);
+    llSetPrimMediaParams(mediaFace,[PRIM_MEDIA_AUTO_PLAY,TRUE, PRIM_MEDIA_HOME_URL,hailsHome, PRIM_MEDIA_CURRENT_URL,hailsURL, PRIM_MEDIA_HEIGHT_PIXELS,1024, PRIM_MEDIA_WIDTH_PIXELS,800, PRIM_MEDIA_PERMS_INTERACT,0x0, PRIM_MEDIA_CONTROLS,1, PRIM_MEDIA_AUTO_SCALE,1, PRIM_MEDIA_AUTO_LOOP,1]);
     if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
 
@@ -105,17 +96,7 @@ checkSimPop()
     // if no avatars then hibernate
     while (numOfAvatars < 1)
     {
-        if (counter < 1) 
-        {
-            llSetTimerEvent(0.0);
-            hailsURL = "https://hails.cc/";
-            hailsHome = hailsURL;
-            media2Prim();
-            if (debugIM) 
-            { 
-            llInstantMessage(MyKey, "Sim is empty, hibernating.."); 
-            } 
-        }
+        if (counter < 1) { llSetTimerEvent(0.0); hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim(); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
         llSleep(15);
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
