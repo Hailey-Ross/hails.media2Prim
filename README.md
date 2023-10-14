@@ -64,7 +64,7 @@ __Version__: *0.1.1*
 - NEW Debug function
    - Checks Object Description for user input
    - Can Reset script with 'resetme'
-   - Can disable Release Candidtate llSetText with 'nosettext'
+   - Can disable Release Candidate llSetText with 'nosettext'
    - Can silence debug mode with 'silent'
    - Can ENABLE debug mode with 'debug'
 - NEW Sim Population Function
