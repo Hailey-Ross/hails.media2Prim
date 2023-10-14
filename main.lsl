@@ -12,7 +12,7 @@ key lineid;
 key MyKey;
 
 string hailsVersion = "0.1.1";   //Version Number
-string rcInfo = "Release_Candidate 3";
+string rcInfo;
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string objDesc;
@@ -23,7 +23,7 @@ string forceHomeURL = "https://hails.cc/";
 
 integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc = TRUE;               //Dev Variable
+integer rc = FALSE;               //Dev Variable
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
