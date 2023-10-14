@@ -70,6 +70,8 @@ __Version__: *0.1.1*
 - NEW Sim Population Function
    - Checks the Simulators population then hibernates if less than 1
    - Sends IM notification to Script Owner during Debug
+- Added Additional Color Vectors
+   - Provided for customization by user(s)
 -  -  -  -  -  -  -  -  -  -
 ### Minor Patch 2
 *RELEASED* - **09/24/23**  
