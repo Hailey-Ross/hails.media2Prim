@@ -4,14 +4,14 @@
 //PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
-//CREATE/NAME A NOTECARD "hails.urls"
+//NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
 key linecountid;
 key lineid;
 key MyKey;
 
-string hailsVersion = "0.1.1 - RC 1";   //Version Number
+string hailsVersion = "0.1.1 - RC 2";   //Version Number
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string objDesc;
@@ -21,7 +21,7 @@ string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
 integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
