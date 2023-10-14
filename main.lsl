@@ -14,11 +14,11 @@ key MyKey;
 string hailsVersion = "0.1.1 - RC 1";   //Version Number
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
+string objDesc;
 string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
-string objDesc;
 
 integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
@@ -106,10 +106,9 @@ checkSimPop()
     // if no avatars then hibernate
     while (!numOfAvatars)
     {
-        if (counter < 1) { if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
-        llSetTimerEvent(0.0);
+        if (counter < 1) { if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } llSetTimerEvent(0.0); }
         llSleep(15);
-        if (counter > 1) { counter = 1; } else { ++counter; }
+        if (counter > 1000) { counter = 1; } else { ++counter; }
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
     counter = 0;
