@@ -49,7 +49,7 @@ https://i.imgur.com/dc9RNYg.mp4
 ## Change-log
 
 ### Minor Patch 3
-*UNRELEASED* - **10/13/23**  
+*RELEASED* - **10/13/23**  
 __Version__: *0.1.1*  
 -  -  -  -  -  -  -  -  -  -
 - Updated TimerEvents
