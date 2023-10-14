@@ -50,8 +50,8 @@ https://i.imgur.com/dc9RNYg.mp4
 ## Change-log
 
 ### Minor Patch 3
-*RELEASED* - **10/13/23**  
-__Version__: *0.1.1*  
+*RELEASED* - **10/14/23**  
+__Version__: *0.1.1a*  
 -  -  -  -  -  -  -  -  -  -
 - Updated TimerEvents
    - Optimizations
@@ -68,6 +68,7 @@ __Version__: *0.1.1*
    - Can disable Release Candidate llSetText with 'nosettext'
    - Can silence debug mode with 'silent'
    - Can ENABLE debug mode with 'debug'
+   - Can FORCE Setup mode with 'dosetup'
 - NEW Sim Population Function
    - Checks the Simulators population then hibernates if less than 1
    - Sends IM notification to Script Owner during Debug
