@@ -63,14 +63,14 @@ checkDebug()
     else if (objDesc == "debug") { debug = TRUE; debugIM = TRUE; llOwnerSay(hailsObjName + " DEBUG mode Enabled.."); llInstantMessage(MyKey, "IM DEBUG mode Enabled.."); llSetObjectDesc("v" + hailsVersion + " - DEBUG"); llSetObjectName(objectName + " - DEBUG"); }
     else if (objDesc == "silent") { debug = FALSE; debugIM = TRUE; llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
     else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); llSetObjectDesc("v" + hailsVersion); }
-    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llResetScript(); }
+    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llClearPrimMedia(mediaFace); llResetScript(); }
     else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
 }
 
 hailsSetup() //Setup Primitive Function
 {
     MyKey = llGetOwner();
-    checkDebug();
+    checkDebug(); llClearPrimMedia(mediaFace);
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; }
     if (hailsStartSetup & doSetup) //main function logic
@@ -98,7 +98,7 @@ checkSimPop()
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     while (numOfAvatars < 1)
     {
-        if (counter < 1) { llSetTimerEvent(0.0); hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim(); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
+        if (counter < 1) { llSetTimerEvent(0.0); llClearPrimMedia(mediaFace); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
         llSleep(15);
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
@@ -111,7 +111,7 @@ checkSimPop()
 default {
     on_rez(integer start_param)
     {
-        checkDebug();
+        checkDebug(); llClearPrimMedia(mediaFace);
         llSleep(0.75); llResetScript();
     }
     changed(integer change)
@@ -119,7 +119,7 @@ default {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY | CHANGED_REGION))
         {
             if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
-            checkDebug(); llSleep(hailsTimer); llResetScript();
+            checkDebug(); llClearPrimMedia(mediaFace); llSleep(hailsTimer); llResetScript();
         }
     }
     state_entry() {
@@ -137,7 +137,7 @@ default {
     }
     touch_start(integer total_number)
     {
-        checkDebug();
+        checkDebug(); llClearPrimMedia(mediaFace);
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199); llSetTimerEvent(0.0);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
