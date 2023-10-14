@@ -48,8 +48,33 @@ https://i.imgur.com/dc9RNYg.mp4
   
 ## Change-log
 
+### Minor Patch 3
+*UNRELEASED* - **10/13/23**  
+__Version__: *0.1.1*  
+-  -  -  -  -  -  -  -  -  -
+- Updated TimerEvents
+   - Optimizations
+   - Disabled when the Sim is empty
+- Updated Touch Function
+   - Checks for user input in Object Description
+   - additional optimizations
+- Updated Setup Function
+   - Optimizations
+   - Checks new Debug function
+- NEW Debug function
+   - Checks Object Description for user input
+   - Can Reset script with 'resetme'
+   - Can disable Release Candidate llSetText with 'nosettext'
+   - Can silence debug mode with 'silent'
+   - Can ENABLE debug mode with 'debug'
+- NEW Sim Population Function
+   - Checks the Simulators population then hibernates if less than 1
+   - Sends IM notification to Script Owner during Debug
+- Added Additional Color Vectors
+   - Provided for customization by user(s)
+-  -  -  -  -  -  -  -  -  -
 ### Minor Patch 2
-*RELEASED*: **09/24/23**  
+*RELEASED* - **09/24/23**  
 __Version__: *0.1.0a*  
 -  -  -  -  -  -  -  -  -  -
 - TimerEvents

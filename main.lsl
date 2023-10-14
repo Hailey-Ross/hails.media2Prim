@@ -9,17 +9,22 @@
 
 key linecountid;
 key lineid;
+key MyKey;
 
-string hailsVersion = "0.1.0a";   //Version Number
-string card = "hails.urls";      //Notecard name
+string hailsVersion = "0.1.1";   //Version Number
+string rcInfo;
+string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
+string objDesc;
 string hailsObjName;
 string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;           //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer linemax;
+integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
+integer rc = FALSE;               //Dev Variable
+integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
@@ -31,15 +36,42 @@ float hailsTimer = 2.25;         // Short pause timer
 float hailsTimer2 = 10.75;
 float hailsRandTimer;
 
-vector black = <0,0,0>;          //Vector value for Black
-vector white = <1.0,1.0,1.0>;    //Vector value for White
+vector black = <0,0,0>;
+vector white = <1.0,1.0,1.0>;
+vector navy = <0,0.122,0.247>;
+vector blue = <0,0.455,0.851>;
+vector aqua = <0.498,0.859,1>;
+vector teal = <0.224,0.8,0.8>;
+vector olive = <0.239,0.6,0.439>;
+vector green = <0.18,0.8,0.251>;
+vector lime = <0.004,1,0.439>;
+vector yellow = <1,0.863,0>;
+vector orange = <1,0.522,0.106>;
+vector red = <1,0.255,0.212>;
+vector maroon = <0.522,0.078,0.294>;
+vector fuchsia = <0.941,0.071,0.745>;
+vector purple = <0.694,0.051,0.788>;
+vector silver = <0.867,0.867,0.867>;
+vector gray = <0.667,0.667,0.667>;
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
+checkDebug()
+{
+    objDesc = llGetObjectDesc();
+    if (objDesc == "v" + hailsVersion + " - DEBUG") { llOwnerSay(hailsObjName + " DEBUG enabled.. SKIP"); }
+    else if (objDesc == "debug") { debug = TRUE; debugIM = TRUE; llOwnerSay(hailsObjName + " DEBUG mode Enabled.."); llInstantMessage(MyKey, "IM DEBUG mode Enabled.."); llSetObjectDesc("v" + hailsVersion + " - DEBUG"); llSetObjectName(objectName + " - DEBUG"); }
+    else if (objDesc == "silent") { debug = FALSE; debugIM = TRUE; llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
+    else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); llSetObjectDesc("v" + hailsVersion); }
+    else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llResetScript(); }
+    else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
+}
+
 hailsSetup() //Setup Primitive Function
 {
-    llSetObjectDesc("v" + hailsVersion);
-    llSetObjectName(objectName);
+    MyKey = llGetOwner();
+    checkDebug();
+    if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
     {
         hailsStartSetup = TRUE;
@@ -68,36 +100,52 @@ hailsSetup() //Setup Primitive Function
 
 media2Prim()
 {
-    llSetPrimMediaParams(mediaFace,                             // Side to display the media on.
-            [PRIM_MEDIA_AUTO_PLAY,TRUE,                     // Show this page immediately
-             PRIM_MEDIA_HOME_URL,hailsHome,       // The url if they hit 'home'
-             PRIM_MEDIA_CURRENT_URL,hailsURL,    // The url currently showing
-             PRIM_MEDIA_HEIGHT_PIXELS,1024,                  // Height/width of media texture will be
-             PRIM_MEDIA_WIDTH_PIXELS,800,
-             PRIM_MEDIA_PERMS_INTERACT,0x0,
-             PRIM_MEDIA_CONTROLS,1,
-             PRIM_MEDIA_AUTO_SCALE,1,
-             PRIM_MEDIA_AUTO_LOOP,1]);
+    llSetPrimMediaParams(mediaFace,[PRIM_MEDIA_AUTO_PLAY,TRUE, PRIM_MEDIA_HOME_URL,hailsHome, PRIM_MEDIA_CURRENT_URL,hailsURL, PRIM_MEDIA_HEIGHT_PIXELS,1024, PRIM_MEDIA_WIDTH_PIXELS,800, PRIM_MEDIA_PERMS_INTERACT,0x0, PRIM_MEDIA_CONTROLS,1, PRIM_MEDIA_AUTO_SCALE,1, PRIM_MEDIA_AUTO_LOOP,1]);
     if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
 
+checkSimPop()
+{
+    integer numOfAvatars = llGetRegionAgentCount();
+    integer counter;
+    if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
+    while (numOfAvatars < 1)
+    {
+        if (counter < 1) { llSetTimerEvent(0.0); hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim(); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
+        llSleep(15);
+        if (counter > 1000) { counter = 1; } else { ++counter; }
+        numOfAvatars = llGetRegionAgentCount();
+        if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); }
+    }
+    if (debug) { llOwnerSay(hailsObjName + " Sim Pop check PASSED."); }
+    counter = 0;
+    }
+
 default {
+    on_rez(integer start_param)
+    {
+        checkDebug();
+        llSleep(0.75);
+        llResetScript(); //ensure script startup state on rez
+    }
     changed(integer change)
     {
-        if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
+        if (change & (CHANGED_OWNER | CHANGED_INVENTORY | CHANGED_REGION))
         {
             if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
+            checkDebug();
             llSleep(hailsTimer);
             llResetScript();
         }
     }
     state_entry() {
+        if (debug & debugIM) { llSetObjectDesc("debug"); }
         hailsObjName = objectName + ":";
+        hailsSetup();
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         hailsURL = "https://hails.cc/";
         hailsHome = hailsURL;
-        hailsSetup();
         media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
@@ -107,6 +155,7 @@ default {
     }
     touch_start(integer total_number)
     {
+        checkDebug();
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199);
         llSetTimerEvent(hailsRandTimer);
@@ -114,7 +163,10 @@ default {
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
         llSleep(0.25); //Take another nap ..zzZzz..
     }
-    timer() {
+    timer() 
+    {  
+        checkDebug();
+        checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
     }
    dataserver(key id, string data)
