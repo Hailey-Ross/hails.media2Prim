@@ -72,25 +72,12 @@ hailsSetup() //Setup Primitive Function
     MyKey = llGetOwner();
     checkDebug();
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
-    if (llGetAlpha(oppositeFace)) //Check face 5 (bottom) for transparency to test for prior setup
-    {
-        hailsStartSetup = TRUE;
-    }
-    else {
-        hailsStartSetup = FALSE;
-    }
+    if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; }
     if (hailsStartSetup & doSetup) //main function logic
     {
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
-        llSetTexture(TEXTURE_BLANK, ALL_SIDES); //Set Primitive Texture to Blankf from default wood texture
-        llSetColor(black, ALL_SIDES);  //Set all faces to black
-        llSetColor(white, mediaFace); //Set Media Face to white
-        llSetAlpha(1.0, ALL_SIDES); //Ensure every face is not transparent
-        llSetAlpha(0.0, oppositeFace); //Set Prim Bottom Transparent
-        llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); //Lock/Unlock Grab/Drag Functionality
-        llSetStatus(STATUS_PHANTOM, doPhantom); //whether Primitive is Phantom
-        hailsStartSetup = FALSE; //Set variable to disable setup if called again during this run
-        if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); } //debug
+        llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); hailsStartSetup = FALSE;
+        if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
         llSleep(0.27); //Take a nap ..zzZzz..
     }
     else {
@@ -125,17 +112,14 @@ default {
     on_rez(integer start_param)
     {
         checkDebug();
-        llSleep(0.75);
-        llResetScript(); //ensure script startup state on rez
+        llSleep(0.75); llResetScript();
     }
     changed(integer change)
     {
         if (change & (CHANGED_OWNER | CHANGED_INVENTORY | CHANGED_REGION))
         {
             if (debug) { llOwnerSay(hailsObjName + " has detected a change, Rebooting. . ."); }
-            checkDebug();
-            llSleep(hailsTimer);
-            llResetScript();
+            checkDebug(); llSleep(hailsTimer); llResetScript();
         }
     }
     state_entry() {
@@ -144,9 +128,7 @@ default {
         hailsSetup();
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
-        hailsURL = "https://hails.cc/";
-        hailsHome = hailsURL;
-        media2Prim();
+        hailsURL = "https://hails.cc/"; hailsHome = hailsURL; media2Prim();
         llSleep(hailsTimer2); //allow initial URL to load
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         hailsRandTimer = random_integer(59, 199);
@@ -157,15 +139,13 @@ default {
     {
         checkDebug();
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
-        hailsRandTimer = random_integer(59, 199);
-        llSetTimerEvent(0.0);
+        hailsRandTimer = random_integer(59, 199); llSetTimerEvent(0.0);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         llSleep(0.25); //Take another nap ..zzZzz..
     }
     timer() 
     {  
-        checkDebug();
-        checkSimPop();
+        checkDebug(); checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
     }
    dataserver(key id, string data)
@@ -176,13 +156,9 @@ default {
         }
         else if (id == lineid)
         {
-            hailsURL = data;
-            hailsHome = data;
-            media2Prim();
-            hailsRandTimer = random_integer(59, 199);
-            llSetTimerEvent(hailsRandTimer);
-            if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
-            if (debug) { llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
+            hailsURL = data; hailsHome = data; media2Prim(); 
+            hailsRandTimer = random_integer(59, 199); llSetTimerEvent(hailsRandTimer);
+            if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer);  llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
             llSleep(hailsTimer);
         }
     }
