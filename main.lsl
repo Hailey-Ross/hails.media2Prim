@@ -4,7 +4,7 @@
 //PLEASE LEAVE ALL CREDITS/COMMENTS INTACT
 
 //TO USE THIS SCRIPT START BY CREATING A NOTECARD IN THE PRIM WITH THIS SCRIPT 
-//NAME THE NOTECARD "hails.urls"
+//CREATE/NAME A NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
 key linecountid;
@@ -141,9 +141,10 @@ default {
         if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
         llSleep(0.25); //Take another nap ..zzZzz..
     }
-    timer() {  
-            checkSimPop();
-            lineid = llGetNotecardLine(card, random_integer(0, linemax));
+    timer() 
+    {  
+        checkSimPop();
+        lineid = llGetNotecardLine(card, random_integer(0, linemax));
     }
    dataserver(key id, string data)
     {
