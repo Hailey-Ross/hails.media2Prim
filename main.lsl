@@ -20,7 +20,7 @@ string hailsURL;
 string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 
-integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
@@ -104,11 +104,12 @@ checkSimPop()
     integer counter;
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     // if no avatars then hibernate
-    while (!numOfAvatars)
+    if (!numOfAvatars)
     {
         if (counter < 1) { if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } llSetTimerEvent(0.0); }
         llSleep(15);
         if (counter > 1000) { counter = 1; } else { ++counter; }
+        return;
         }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop has passed check."); }
     counter = 0;
