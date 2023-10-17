@@ -65,30 +65,23 @@ checkDebug() {
     else if (objDesc == "nosettext") { rc = FALSE; llSetText("", ZERO_VECTOR, 0.0); llSetObjectDesc("v" + hailsVersion); }
     else if (objDesc == "resetme") { llSetObjectDesc("v" + hailsVersion); llClearPrimMedia(mediaFace); hailsSetup(); llResetScript(); }
     else if (objDesc == "dosetup") { llSetObjectDesc("v" + hailsVersion); doSetup = TRUE; hailsStartSetup = TRUE; hailsSetup(); }
-    else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); }
-}
+    else { llSetObjectDesc("v" + hailsVersion); llSetObjectName(objectName); } }
 
-hailsSetup() //Setup Primitive Function
-{
+hailsSetup() {
     MyKey = llGetOwner(); llClearPrimMedia(mediaFace);
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (hailsStartSetup & doSetup) { if (debug) { llOwnerSay(hailsObjName + " StartSetup already TRUE. . .SKIP."); } else { if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; } } }
-    if (hailsStartSetup & doSetup) //main function logic
-    {
+    if (hailsStartSetup & doSetup) {
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetTexture(hailsTexture, mediaFace); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); hailsStartSetup = FALSE;
         if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
-        llSleep(0.27); //Take a nap ..zzZzz..
-    }
+        llSleep(0.27); }
     else {
-        if (debug) { llOwnerSay(hailsObjName + " SKIP Setup Function. . ."); }
-    }
-}
+        if (debug) { llOwnerSay(hailsObjName + " SKIP Setup Function. . ."); } } }
 
 media2Prim() {
     llSetPrimMediaParams(mediaFace,[PRIM_MEDIA_AUTO_PLAY,TRUE, PRIM_MEDIA_HOME_URL,hailsHome, PRIM_MEDIA_CURRENT_URL,hailsURL, PRIM_MEDIA_HEIGHT_PIXELS,1024, PRIM_MEDIA_WIDTH_PIXELS,800, PRIM_MEDIA_PERMS_INTERACT,0x0, PRIM_MEDIA_CONTROLS,1, PRIM_MEDIA_AUTO_SCALE,1, PRIM_MEDIA_AUTO_LOOP,1]);
-    if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
-}
+    if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); } }
 
 checkSimPop() {
     integer numOfAvatars = llGetRegionAgentCount(); integer counter;
@@ -102,8 +95,7 @@ checkSimPop() {
         if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); }
     }
     if (debug) { llOwnerSay(hailsObjName + " Sim Pop check PASSED."); }
-    counter = 0;
-    }
+    counter = 0; }
 
 default {
     on_rez(integer start_param)
