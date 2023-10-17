@@ -11,8 +11,8 @@ key linecountid;
 key lineid;
 key MyKey;
 
-string hailsVersion = "0.1.1a";   //Version Number
-string rcInfo;
+string hailsVersion = "0.1.1b";   //Version Number
+string rcInfo = "Release_Candidate 1";
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string objDesc;
@@ -22,9 +22,9 @@ string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 string hailsTexture = "9d0c0e2d-852e-b2d0-9e5e-a64b2f78bc3a";
 
-integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc = FALSE;               //Dev Variable
+integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
+integer rc = TRUE;               //Dev Variable
 integer linemax;                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
@@ -57,8 +57,7 @@ vector gray = <0.667,0.667,0.667>;
 
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
-checkDebug()
-{
+checkDebug() {
     objDesc = llGetObjectDesc();
     if (objDesc == "v" + hailsVersion + " - DEBUG") { llOwnerSay(hailsObjName + " DEBUG enabled.. SKIP"); }
     else if (objDesc == "debug") { debug = TRUE; debugIM = TRUE; llOwnerSay(hailsObjName + " DEBUG mode Enabled.."); llInstantMessage(MyKey, "IM DEBUG mode Enabled.."); llSetObjectDesc("v" + hailsVersion + " - DEBUG"); llSetObjectName(objectName + " - DEBUG"); }
@@ -71,8 +70,7 @@ checkDebug()
 
 hailsSetup() //Setup Primitive Function
 {
-    MyKey = llGetOwner();
-    llClearPrimMedia(mediaFace);
+    MyKey = llGetOwner(); llClearPrimMedia(mediaFace);
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (hailsStartSetup & doSetup) { if (debug) { llOwnerSay(hailsObjName + " StartSetup already TRUE. . .SKIP."); } else { if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; } } }
     if (hailsStartSetup & doSetup) //main function logic
@@ -87,21 +85,18 @@ hailsSetup() //Setup Primitive Function
     }
 }
 
-media2Prim()
-{
+media2Prim() {
     llSetPrimMediaParams(mediaFace,[PRIM_MEDIA_AUTO_PLAY,TRUE, PRIM_MEDIA_HOME_URL,hailsHome, PRIM_MEDIA_CURRENT_URL,hailsURL, PRIM_MEDIA_HEIGHT_PIXELS,1024, PRIM_MEDIA_WIDTH_PIXELS,800, PRIM_MEDIA_PERMS_INTERACT,0x0, PRIM_MEDIA_CONTROLS,1, PRIM_MEDIA_AUTO_SCALE,1, PRIM_MEDIA_AUTO_LOOP,1]);
     if (debug) { llOwnerSay(hailsObjName + " has updated URL: (" + hailsURL + ") "); }
 }
 
-checkSimPop()
-{
-    integer numOfAvatars = llGetRegionAgentCount();
-    integer counter;
+checkSimPop() {
+    integer numOfAvatars = llGetRegionAgentCount(); integer counter;
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     while (numOfAvatars < 1)
     {
         if (counter < 1) { llSetTimerEvent(0.0); llClearPrimMedia(mediaFace); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
-        llSleep(15);
+        llSleep(2.5); //Short Snooze ..zzzzzZzzzzz..
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
         if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); }
@@ -126,8 +121,7 @@ default {
     }
     state_entry() {
         if (debug & debugIM) { llSetObjectDesc("debug"); }
-        hailsObjName = objectName + ":";
-        hailsSetup();
+        hailsObjName = objectName + ":"; hailsSetup();
         linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
