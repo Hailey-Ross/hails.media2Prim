@@ -56,6 +56,9 @@ __Version__: *0.1.1b*
 - Script Optimization
    - Lines Truncated to reduce script size
    - Similar Functions/Code Concatenated
+- Script Commenting
+   - General Fixes/Proofreading/updates
+- README Cleanup/Additions
 -  -  -  -  -  -  -  -  -  -
 ### Minor Patch 3
 *RELEASED* - **10/14/23**  
