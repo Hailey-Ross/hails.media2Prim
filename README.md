@@ -10,7 +10,7 @@ Notecard-based (LSL) script for randomly grabbing urls and displaying media obje
    - [Minor Patch 4](#minor-patch-4) 
    - [Minor Patch 3](#minor-patch-3) 
    - [Minor Patch 2](#minor-patch-2)
-   - [Minor Patch](#minor-patch)
+   - [Minor Patch 1](#minor-patch)
 
 
 ### Example
