@@ -49,6 +49,14 @@ https://i.imgur.com/dc9RNYg.mp4
   
 ## Change-log
 
+### Minor Patch 4
+*UNRELEASED* - **10/19/23**  
+__Version__: *0.1.1b*  
+-  -  -  -  -  -  -  -  -  -
+- Script Optimization
+   - Lines Truncated to reduce script size
+   - Similar Functions/Code Concatenated
+-  -  -  -  -  -  -  -  -  -
 ### Minor Patch 3
 *RELEASED* - **10/14/23**  
 __Version__: *0.1.1a*  
