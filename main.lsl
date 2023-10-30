@@ -113,7 +113,7 @@ default {
         if (debug) { llOwnerSay(hailsObjName + " Touch Function has been Activated"); }
         hailsRandTimer = random_integer(59, 199); llSetTimerEvent(0.0);
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
-        llSleep(0.25); //Take another nap ..zzZzz.. }
+        llSleep(0.25); }
     timer() {  
         checkDebug(); checkSimPop();
         lineid = llGetNotecardLine(card, random_integer(0, linemax)); }
