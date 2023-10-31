@@ -66,7 +66,7 @@ checkDebug() {
 hailsSetup() {
     MyKey = llGetOwner(); llClearPrimMedia(mediaFace);
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
-    if (hailsStartSetup & doSetup) { if (debug) { llOwnerSay(hailsObjName + " StartSetup already TRUE. . .SKIP."); } else { if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; } else { hailsStartSetup = FALSE; } } }
+    if (llGetAlpha(oppositeFace)) { hailsStartSetup = FALSE; if (debug) { llOwnerSay(hailsObjName + " STARTSETUP set to FALSE"); } } else { hailsStartSetup = TRUE; if (debug) { llOwnerSay(hailsObjName + " STARTSETUP set to TRUE"); } } }
     if (hailsStartSetup & doSetup) {
         if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetTexture(hailsTexture, mediaFace); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); hailsStartSetup = FALSE;
