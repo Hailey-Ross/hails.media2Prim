@@ -7,9 +7,10 @@ Notecard-based (LSL) script for randomly grabbing urls and displaying media obje
 - [Example Notecard](#example-notecard)
 - [Usage](#usage)
 - [Change-log](#change-log)
+   - [Minor Patch 4](#minor-patch-4) 
    - [Minor Patch 3](#minor-patch-3) 
    - [Minor Patch 2](#minor-patch-2)
-   - [Minor Patch](#minor-patch)
+   - [Minor Patch 1](#minor-patch)
 
 
 ### Example
@@ -49,6 +50,19 @@ https://i.imgur.com/dc9RNYg.mp4
   
 ## Change-log
 
+### Minor Patch 4
+*RELEASED* - **11/13/23**  
+__Version__: *0.1.1b*  
+-  -  -  -  -  -  -  -  -  -
+- Script Optimization
+   - Lines Truncated to reduce script size
+   - Similar Functions/Code Concatenated
+- Script Commenting
+   - General Fixes/Proofreading/updates
+- Setup Functionality Fixes
+   - Added Fullbright to on for MediaFace variable
+- README Cleanup/Additions
+-  -  -  -  -  -  -  -  -  -
 ### Minor Patch 3
 *RELEASED* - **10/14/23**  
 __Version__: *0.1.1a*  
