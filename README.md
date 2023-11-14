@@ -51,7 +51,7 @@ https://i.imgur.com/dc9RNYg.mp4
 ## Change-log
 
 ### Minor Patch 4
-*UNRELEASED* - **10/19/23**  
+*RELEASED* - **11/13/23**  
 __Version__: *0.1.1b*  
 -  -  -  -  -  -  -  -  -  -
 - Script Optimization
@@ -59,6 +59,8 @@ __Version__: *0.1.1b*
    - Similar Functions/Code Concatenated
 - Script Commenting
    - General Fixes/Proofreading/updates
+- Setup Functionality Fixes
+   - Added Fullbright to on for MediaFace variable
 - README Cleanup/Additions
 -  -  -  -  -  -  -  -  -  -
 ### Minor Patch 3
