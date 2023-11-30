@@ -1,6 +1,6 @@
 ## hails.media2Prim
 
-Notecard-based (LSL) script for randomly grabbing urls and displaying media objects on a primitive face(s)
+Notecard-based (LSL) script that randomly grabs urls and displays the media on a primitive  
 
 ### Table of Contents
 - [Preview](#example)
