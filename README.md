@@ -36,11 +36,11 @@ https://i.imgur.com/dc9RNYg.mp4
 
 - Rez a new `Box/Square` Prim (*recommended shape*)
 - Create a Notecard, name it `hails.urls`
-- Place your personal Links to Images/Sites/Animations/Video **One per line**
+  - In the Notecard, paste your Video/Image URL's **(One per line)**
 - Create a new script and copy/paste the code over the default script
-- Make any personal adjustments
-- Save the script
-- Adjust the prim shape/position
+  - Make any personal adjustments to the script
+  - Save  
+- Adjust the Shape/Position to your liking
 - Enjoy
 
 ### TODO:
