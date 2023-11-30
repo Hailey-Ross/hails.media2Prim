@@ -18,9 +18,9 @@ string objDesc; string hailsObjName; string hailsURL; string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 string hailsTexture = "9d0c0e2d-852e-b2d0-9e5e-a64b2f78bc3a";
 
-integer debug = TRUE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer debugIM = TRUE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc = TRUE;               //Dev Variable                 
+integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
+integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
+integer rc;               //Dev Variable                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
