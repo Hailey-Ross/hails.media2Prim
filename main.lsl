@@ -11,7 +11,7 @@ key linecountid;
 key lineid; key MyKey;
 
 string hailsVersion = "0.1.1b";   //Version Number
-string rcInfo = "Release_Candidate 1";
+string rcInfo;
 string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
 string objDesc; string hailsObjName; string hailsURL; string hailsHome;
@@ -20,7 +20,7 @@ string hailsTexture = "9d0c0e2d-852e-b2d0-9e5e-a64b2f78bc3a";
 
 integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
 integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc;               //Dev Variable                 
+integer rc = FALSE;               //Dev Variable                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
@@ -51,6 +51,7 @@ vector purple = <0.694,0.051,0.788>;
 vector silver = <0.867,0.867,0.867>;
 vector gray = <0.667,0.667,0.667>;
 
+//------------ DON'T TOUCH BELOW HERE ------------//
 integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
 
 checkDebug() {
@@ -68,7 +69,7 @@ hailsSetup() {
     if (rc) { llSetText("v" + hailsVersion + " - " + rcInfo, fuchsia, 0.71); llSetObjectDesc("v" + hailsVersion + " - " + rcInfo); } else { llSetText("", ZERO_VECTOR, 0.0); }
     if (llGetAlpha(oppositeFace)) { hailsStartSetup = TRUE; if (debug) { llOwnerSay(hailsObjName + " STARTSETUP set to TRUE"); } } else { hailsStartSetup = FALSE; if (debug) { llOwnerSay(hailsObjName + " STARTSETUP set to FALSE"); } } 
     if (hailsStartSetup & doSetup) {
-        if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } //debug
+        if (debug) { llOwnerSay(hailsObjName + " Begin Setup/Optimization function..."); } 
         llSetTexture(TEXTURE_BLANK, ALL_SIDES); llSetTexture(hailsTexture, mediaFace); llSetColor(black, ALL_SIDES); llSetColor(white, mediaFace); llSetAlpha(1.0, ALL_SIDES); llSetAlpha(0.0, oppositeFace); llSetStatus(STATUS_BLOCK_GRAB_OBJECT, doGrab); llSetStatus(STATUS_PHANTOM, doPhantom); llSetPrimitiveParams([PRIM_FULLBRIGHT, mediaFace, TRUE]); hailsStartSetup = FALSE;
         if (debug) { llOwnerSay(hailsObjName + " Setup is Complete."); }
         llSleep(0.27); }
@@ -84,7 +85,7 @@ checkSimPop() {
     if (debug) { llOwnerSay(hailsObjName + " is checking Sim Population.."); }
     while (numOfAvatars < 1) {
         if (counter < 1) { llSetTimerEvent(0.0); llClearPrimMedia(mediaFace); if (debugIM) { llInstantMessage(MyKey, "Sim is empty, hibernating.."); } }
-        llSleep(2.5); //Short Snooze ..zzzzzZzzzzz..
+        llSleep(2.5); 
         if (counter > 1000) { counter = 1; } else { ++counter; }
         numOfAvatars = llGetRegionAgentCount();
         if (debug) { llOwnerSay(hailsObjName + " is re-checking Sim Population.."); } }
@@ -102,11 +103,11 @@ default {
     state_entry() {
         if (debug & debugIM) { llSetObjectDesc("debug"); }
         hailsObjName = objectName + ":"; hailsSetup();
-        linecountid = llGetNumberOfNotecardLines(card); //get the number of notecard lines
+        linecountid = llGetNumberOfNotecardLines(card); 
         if (debug) { llOwnerSay(hailsObjName + " is Performing Start up.."); }
         lineid = llGetNotecardLine(card, random_integer(0, linemax));
         hailsRandTimer = random_integer(59, 199);
-        if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); } //Debug
+        if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer); }
         llSetTimerEvent(hailsRandTimer); }
     touch_start(integer total_number) {
         checkDebug(); llSetTexture(hailsTexture, mediaFace); llClearPrimMedia(mediaFace);
@@ -123,5 +124,5 @@ default {
         else if (id == lineid) {
             hailsURL = data; hailsHome = data; media2Prim(); 
             hailsRandTimer = random_integer(59, 199); llSetTimerEvent(hailsRandTimer);
-            if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer);  llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); } //Debug
+            if (debug) { llOwnerSay(hailsObjName + " TimerEvent set for " + (string)hailsRandTimer);  llOwnerSay(hailsObjName + " is Sleeping for " + (string)hailsTimer); }
             llSleep(hailsTimer); } } }
