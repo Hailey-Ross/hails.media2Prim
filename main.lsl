@@ -7,52 +7,39 @@
 //NAME THE NOTECARD "hails.urls"
 //ONLY PLACE ONE IMAGE/MP4 LINK PER LINE IN THE NOTECARD
 
-key linecountid;
-key lineid; key MyKey;
-
-string hailsVersion = "0.1.1b";   //Version Number
-string rcInfo;
-string card = "hails.urls";             //Notecard name
 string objectName = "hails.media2Prim"; //Primitive name
-string objDesc; string hailsObjName; string hailsURL; string hailsHome;
 string forceHomeURL = "https://hails.cc/";
 string hailsTexture = "9d0c0e2d-852e-b2d0-9e5e-a64b2f78bc3a";
 
-integer debug = FALSE;            //DEBUG toggle, TRUE = ON | FALSE = OFF
-integer debugIM = FALSE;          //Instant Messaging DEBUG toggle, TRUE = ON | FALSE = OFF
-integer rc = FALSE;               //Dev Variable                 
 integer doPhantom = TRUE;        //Primitive Phantom Status, TRUE = ON | FALSE = OFF
 integer doGrab = TRUE;           //Primitive Grab/Drag Functionality, TRUE = ON | FALSE = OFF
 integer doSetup = TRUE;          //Whether to perform setup functionality
+
+//------------ DON'T TOUCH BELOW HERE ------------//
+
+key linecountid; key lineid; key MyKey;
+
+string objDesc; string hailsObjName; string hailsURL; string hailsHome; string rcInfo;
+string hailsVersion = "0.1.1b";
+string card = "hails.urls";
+
+integer linemax;
+integer debug = FALSE;
+integer debugIM = FALSE;
+integer rc = FALSE;                
 integer hailsStartSetup = FALSE; // LEAVE ALONE | Default State
 integer mediaFace = 0;           // TOP = 0 | +X = 1 | +Y = 2 | -X = 3 | +X = 4 | BOTTOM = 5
-integer oppositeFace = 5;        // Set to the opposite side of mediaFace variable!
-integer linemax;
+integer oppositeFace = 5;        // Set to the opposite side of mediaFace variable
+integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //RNG
 
-float hailsTimer = 2.25;         // Short pause timer
+float hailsTimer = 2.25;
 float hailsTimer2 = 10.75;
 float hailsRandTimer;
 
-vector black = <0,0,0>;
-vector white = <1.0,1.0,1.0>;
-vector navy = <0,0.122,0.247>;
-vector blue = <0,0.455,0.851>;
-vector aqua = <0.498,0.859,1>;
-vector teal = <0.224,0.8,0.8>;
-vector olive = <0.239,0.6,0.439>;
-vector green = <0.18,0.8,0.251>;
-vector lime = <0.004,1,0.439>;
-vector yellow = <1,0.863,0>;
-vector orange = <1,0.522,0.106>;
-vector red = <1,0.255,0.212>;
-vector maroon = <0.522,0.078,0.294>;
-vector fuchsia = <0.941,0.071,0.745>;
-vector purple = <0.694,0.051,0.788>;
-vector silver = <0.867,0.867,0.867>;
-vector gray = <0.667,0.667,0.667>;
-
-//------------ DON'T TOUCH BELOW HERE ------------//
-integer random_integer(integer min, integer max) { return min + (integer)(llFrand( max - min + 1 )); } //Random number generation
+vector black = <0,0,0>; vector white = <1.0,1.0,1.0>; vector navy = <0,0.122,0.247>; vector blue = <0,0.455,0.851>;
+vector aqua = <0.498,0.859,1>; vector teal = <0.224,0.8,0.8>; vector olive = <0.239,0.6,0.439>; vector green = <0.18,0.8,0.251>;
+vector lime = <0.004,1,0.439>; vector yellow = <1,0.863,0>; vector orange = <1,0.522,0.106>; vector red = <1,0.255,0.212>;
+vector maroon = <0.522,0.078,0.294>; vector fuchsia = <0.941,0.071,0.745>; vector purple = <0.694,0.051,0.788>; vector gray = <0.667,0.667,0.667>;
 
 checkDebug() {
     objDesc = llGetObjectDesc();
