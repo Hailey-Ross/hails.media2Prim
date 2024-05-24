@@ -37,7 +37,7 @@ https://i.imgur.com/dc9RNYg.mp4
 - Rez a new `Box/Square` Prim (*recommended shape*)
 - Create a Notecard, name it `hails.urls`
   - In the Notecard, paste your Video/Image URL's **(One per line)**
-- Create a new script and copy/paste the code over the default script
+- Create a new script and copy/paste the code from `main.lsl` or `smol.lsl` over the default script.
   - Make any personal adjustments to the script
   - Save  
 - Adjust the Shape/Position to your liking
