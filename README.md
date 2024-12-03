@@ -20,24 +20,13 @@ Notecard-based (LSL) script that randomly grabs urls and displays the media on a
 ### Example Notecard:
 
 Unless you change it in the script, Notecard **MUST** be named `hails.urls`  
-These are example URLs to test out the script.
-```
-https://i.imgur.com/cc957Ax.mp4
-https://i.imgur.com/7iq48DN.mp4
-https://i.imgur.com/S02CemU.mp4
-https://i.imgur.com/fU7pIfg.mp4
-https://i.imgur.com/xjGh9cM.mp4
-https://i.imgur.com/HZ1YIsp.mp4
-https://i.imgur.com/dg1UUQ3.mp4
-https://i.imgur.com/dc9RNYg.mp4
-```
 
 ### Usage:
 
 - Rez a new `Box/Square` Prim (*recommended shape*)
 - Create a Notecard, name it `hails.urls`
   - In the Notecard, paste your Video/Image URL's **(One per line)**
-- Create a new script and copy/paste the code from `main.lsl` or `smol.lsl` over the default script.
+- Create a new script and copy/paste the code from `main.lsl` over the default script.
   - Make any personal adjustments to the script
   - Save  
 - Adjust the Shape/Position to your liking
