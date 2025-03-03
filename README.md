@@ -58,7 +58,6 @@ https://example.com/media3.gif
 ✔️ Optimized **timer events & touch interactions**  
 
 ## 📌 To-Do  
-- 🔄 **Support for additional media types**  
 - 🔧 **Additional customization settings**  
 - ⚡ **Performance improvements**  
 
