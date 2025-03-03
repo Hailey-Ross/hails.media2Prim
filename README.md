@@ -1,126 +1,113 @@
-# **hails.media2Prim**  
-*A Notecard-based LSL script that randomly selects URLs and displays media on a prim.*  
+# 🎥 hails.media2Prim 📡  
+*A Notecard-based LSL script that randomly selects URLs and displays media on a prim.*
 
-## **Table of Contents**
-- [Preview](#preview)
-- [Example Notecard](#example-notecard)
-- [Usage](#usage)
-- [To-Do](#to-do)
-- [Change Log](#change-log)
-  - [Minor Patch 4](#minor-patch-4)
-  - [Minor Patch 3](#minor-patch-3)
-  - [Minor Patch 2](#minor-patch-2)
-  - [Minor Patch 1](#minor-patch-1)
+![GitHub Repo stars](https://img.shields.io/github/stars/Hailey-Ross/hails.media2Prim?style=social)  
+![GitHub forks](https://img.shields.io/github/forks/Hailey-Ross/hails.media2Prim?style=social)  
+![GitHub last commit](https://img.shields.io/github/last-commit/Hailey-Ross/hails.media2Prim/main)  
+![GitHub issues](https://img.shields.io/github/issues/Hailey-Ross/hails.media2Prim)
 
----
+## 📌 Table of Contents  
+- [📺 Preview](#preview)  
+- [📜 Example Notecard](#example-notecard)  
+- [⚙️ Usage](#usage)  
+- [✅ Features](#features)  
+- [📌 To-Do](#to-do)  
+- [📝 Change Log](#change-log)  
 
-## **Preview**
-[Preview](https://assets.hails.cc/i/hm2p-preview.gif)  
-_Click to view a demonstration._
+## 🖼️ Preview  
+[Preview](https://i.imgur.com/lMoRjGc.gif)  
+🔗 *Click the image above to view a demonstration.*
 
----
+## 📜 Example Notecard  
+By default, the script requires a Notecard named **`hails.urls`** unless manually changed in the script.
 
-## **Example Notecard**
-By default, the script expects a Notecard named **`hails.urls`** unless changed in the script.
-
----
-
-## **Usage**
-1. **Rez a Prim**  
-   - A `Box/Square` shape is recommended.
-   
-2. **Create the Notecard**  
-   - Name it **`hails.urls`**.
-   - Add video/image URLs, one per line.
-
-3. **Add the Script**  
-   - Create a new script inside the prim.  
-   - Copy/paste the contents of `main.lsl`.  
-   - Modify the script as needed.  
-   - Save.
-
-4. **Adjust & Enjoy**  
-   - Position/resize the prim as desired.  
-   - The script will randomly display media from the Notecard.
+Example contents of `hails.urls`:
+```txt
+https://example.com/media1.mp4
+https://example.com/media2.png
+https://example.com/media3.gif
+```
 
 ---
 
-## **To-Do**
-- *TBD*
+## ⚙️ Usage  
 
----
+### 1️⃣ **Rez a Prim**  
+- A `Box/Square` shape is **recommended** for best display results.  
 
-# **Change Log**
+### 2️⃣ **Create a Notecard**  
+- Name it **`hails.urls`**.  
+- Add video/image URLs, one per line.  
 
-### **Minor Patch 4** 
-*(Released: 11/13/23 - Version: 0.1.1b)*
-- **Optimized script size** by truncating lines and consolidating functions.  
-- **Improved script comments** for readability and clarity.  
-- **Fixed setup functionality**:  
-  - `Fullbright` is now automatically enabled for the `MediaFace` variable.  
-- **README improvements** for better structure and clarity.  
+### 3️⃣ **Add the Script**  
+- Create a new script inside the prim.  
+- Copy & paste the contents of **`main.lsl`**.  
+- Modify as needed.  
+- Save the script.  
 
----
+### 4️⃣ **Adjust & Enjoy**  
+- Position and resize the prim as desired.  
+- The script will **randomly display** media from the Notecard.  
 
-### **Minor Patch 3** 
-*(Released: 10/14/23 - Version: 0.1.1a)*
+## ✅ Features  
+✔️ Supports **images, GIFs, and videos**  
+✔️ Uses a **randomized selection** of URLs  
+✔️ **Debug Mode** available via object description commands  
+✔️ **Low-impact performance** with automatic hibernation  
+✔️ **Customizable media face** settings  
+✔️ Optimized **timer events & touch interactions**  
+
+## 📌 To-Do  
+- 🔄 **Support for additional media types**  
+- 🔧 **Additional customization settings**  
+- ⚡ **Performance improvements**  
+
+# 📝 Change Log  
+
+| **Version** | **Release Date** | **Changes & Improvements** |
+|------------|----------------|-----------------------------|
+| **0.1.1b** | 11/13/23 | Script optimizations, Fullbright setting, and README updates |
+| **0.1.1a** | 10/14/23 | Timer event updates, Debug function improvements, and Sim population check |
+| **0.1.0a** | 09/24/23 | Touch function fixes, setup optimizations, and color vector updates |
+| **0.1.0**  | 09/22/23 | Initial release, media2Prim function implementation, and code cleanup |
+
+For a detailed breakdown, see the **[full patch notes](#detailed-change-log).**
+
+## 📂 Detailed Change Log  
+
+### 🔹 **Minor Patch 4** *(11/13/23 - v0.1.1b)*  
+- **Optimized script size** (truncated lines & concatenated functions).  
+- **Improved script comments** (proofreading & updates).  
+- **Fixed setup functionality:**  
+  - `Fullbright` now automatically enabled for `MediaFace`.  
+- **README formatting & cleanup**.  
+
+### 🔹 **Minor Patch 3** *(10/14/23 - v0.1.1a)*  
 - **Timer Events Update**  
-  - Now disabled when the sim is empty.  
+  - Disabled when the **sim is empty** to save resources.  
   - General optimizations.  
 - **Touch Function Enhancements**  
-  - Checks for user input in the object description.  
-  - Additional performance improvements.  
+  - Checks for **user input** in the Object Description.  
+  - **Improved event handling.**  
 - **Setup Function Adjustments**  
-  - Optimized setup sequence.  
-  - Integrated with the new Debug function.  
+  - Improved sequence and added Debug integration.  
 - **New Debug Function**  
-  - Accepts specific commands via object description:  
-    - `"resetme"` → Resets script.  
-    - `"nosettext"` → Disables release candidate `llSetText`.  
-    - `"silent"` → Disables debug mode.  
-    - `"debug"` → Enables debug mode.  
-    - `"dosetup"` → Forces setup mode.  
-- **Sim Population Function**  
-  - Hibernates script if the simulator is empty.  
-  - Sends an IM notification to the script owner in debug mode.  
-- **Additional Color Vectors** for further customization.  
+  - Commands via Object Description:  
+    - `"resetme"` → Resets script  
+    - `"nosettext"` → Disables `llSetText`  
+    - `"silent"` → Mutes debug mode  
+    - `"debug"` → Enables debug mode  
+    - `"dosetup"` → Forces setup mode  
 
----
+## 🔧 Contributing  
+Interested in contributing? Feel free to fork the repo and submit a pull request! 🎉  
 
-### **Minor Patch 2** 
-*(Released: 09/24/23 - Version: 0.1.0a)*
-- **Timer Events**  
-  - Properly reset on touch.  
-  - Adjusted event length dynamically on media change.  
-- **Touch Function Fixes**  
-  - Resets timer events correctly.  
-  - Randomized URL selection.  
-- **Setup Function Overhaul**  
-  - Cleaned up function ordering.  
-  - Ensures object name always updates.  
-  - Improved color handling via `mediaFace` and `oppositeFace` variables.  
-- **Debug Mode Enhancements**  
-  - More verbose output for touch interactions and URL randomization.  
-  - Fixed inconsistent debug variables.  
-- **Code Optimization**  
-  - Improved script readability.  
-  - Removed redundant/unnecessary code.  
-
----
-
-### **Minor Patch 1** 
-*(Released: 09/22/23 - Version: 0.1.0)*
-- **Implemented `media2Prim()` Function**  
-  - Sets variables and executes media display function.  
-- **New Customization Variables**  
-- **General Code Cleanup**  
-  - Compact debug lines.  
-  - Optimized variable names and structure.  
-  - Improved commenting and crediting.  
-- **`hailsSetup()` Function Enhancements**  
-  - Automatically applies appropriate prim face settings (black, transparent, blank texture).  
-  - Updates object name and version.  
-  - Adjusts physics state (phantom, drag function).  
-- **Setup Verification**  
-  - Checks for proper setup and reinitializes if necessary.  
-  - Can be disabled via a script variable.  
+## 👤 Author  
+**Hailey (Hails)**  
+💻 *Coding Fae & LSL Enthusiast*  
+  
+📬 **Contact**: [GitHub Issues](https://github.com/Hailey-Ross/hails.media2Prim/issues)  
+  
+  
+💜 *If you found this useful, consider leaving a ⭐ on GitHub!*  
+![GitHub Repo stars](https://img.shields.io/github/stars/Hailey-Ross/hails.media2Prim?style=social)
