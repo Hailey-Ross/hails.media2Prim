@@ -15,7 +15,7 @@
 - [📝 Change Log](#change-log)  
 
 ## 🖼️ Preview  
-[Preview](https://i.imgur.com/lMoRjGc.gif)  
+[Preview](https://assets.hails.cc/i/m2p/preview.gif)  
 🔗 *Click the image above to view a demonstration.*
 
 ## 📜 Example Notecard  
