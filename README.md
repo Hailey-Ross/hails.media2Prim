@@ -7,16 +7,16 @@
 ![GitHub issues](https://img.shields.io/github/issues/Hailey-Ross/hails.media2Prim)
 
 ## Table of Contents  
-- [📺 Preview](#preview)  
-- [📜 Example Notecard](#example-notecard)  
-- [⚙️ Usage](#usage)  
-- [✅ Features](#features)  
-- [📌 To-Do](#to-do)  
-- [📝 Change Log](#change-log)  
+- [Preview](#preview)  
+- [Example Notecard](#example-notecard)  
+- [Usage](#usage)  
+- [Features](#features)  
+- [To-Do](#to-do)  
+- [Change Log](#change-log)  
 
 ## Preview  
 [Preview](https://assets.hails.cc/i/m2p/preview.gif)  
-🔗 *Click the image above to view a demonstration.*
+*Click the image above to view a demonstration.*
 
 ## Example Notecard  
 By default, the script requires a Notecard named **`hails.urls`** unless manually changed in the script.
