@@ -1,4 +1,4 @@
-# 🎥 hails.media2Prim 📡  
+# hails.media2Prim 📡  
 *A Notecard-based LSL script that randomly selects URLs and displays media on a prim.*
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/Hailey-Ross/hails.media2Prim?style=social)  
@@ -6,7 +6,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Hailey-Ross/hails.media2Prim/main)  
 ![GitHub issues](https://img.shields.io/github/issues/Hailey-Ross/hails.media2Prim)
 
-## 📌 Table of Contents  
+## Table of Contents  
 - [📺 Preview](#preview)  
 - [📜 Example Notecard](#example-notecard)  
 - [⚙️ Usage](#usage)  
@@ -14,11 +14,11 @@
 - [📌 To-Do](#to-do)  
 - [📝 Change Log](#change-log)  
 
-## 🖼️ Preview  
+## Preview  
 [Preview](https://assets.hails.cc/i/m2p/preview.gif)  
 🔗 *Click the image above to view a demonstration.*
 
-## 📜 Example Notecard  
+## Example Notecard  
 By default, the script requires a Notecard named **`hails.urls`** unless manually changed in the script.
 
 Example contents of `hails.urls`:
@@ -30,38 +30,38 @@ https://example.com/media3.gif
 
 ---
 
-## ⚙️ Usage  
+## Usage  
 
-### 1️⃣ **Rez a Prim**  
+### **Rez a Prim**  
 - A `Box/Square` shape is **recommended** for best display results.  
 
-### 2️⃣ **Create a Notecard**  
+### **Create a Notecard**  
 - Name it **`hails.urls`**.  
 - Add video/image URLs, one per line.  
 
-### 3️⃣ **Add the Script**  
+### **Add the Script**  
 - Create a new script inside the prim.  
 - Copy & paste the contents of **`main.lsl`**.  
 - Modify as needed.  
 - Save the script.  
 
-### 4️⃣ **Adjust & Enjoy**  
+### **Adjust & Enjoy**  
 - Position and resize the prim as desired.  
 - The script will **randomly display** media from the Notecard.  
 
-## ✅ Features  
-✔️ Supports **images, GIFs, and videos**  
-✔️ Uses a **randomized selection** of URLs  
-✔️ **Debug Mode** available via object description commands  
-✔️ **Low-impact performance** with automatic hibernation  
-✔️ **Customizable media face** settings  
-✔️ Optimized **timer events & touch interactions**  
+## Features  
+- Supports **images, GIFs, and videos**  
+- Uses a **randomized selection** of URLs  
+- **Debug Mode** available via object description commands  
+- **Low-impact performance** with automatic hibernation  
+- **Customizable media face** settings  
+- Optimized **timer events & touch interactions**  
 
-## 📌 To-Do  
-- 🔧 **Additional customization settings**  
-- ⚡ **Performance improvements**  
+## To-Do  
+- **Additional customization settings**  
+- **Performance improvements**  
 
-# 📝 Change Log  
+# Change Log  
 
 | **Version** | **Release Date** | **Changes & Improvements** |
 |------------|----------------|-----------------------------|
@@ -72,16 +72,16 @@ https://example.com/media3.gif
 
 For a detailed breakdown, see the **[full patch notes](#detailed-change-log).**
 
-## 📂 Detailed Change Log  
+## Detailed Change Log  
 
-### 🔹 **Minor Patch 4** *(11/13/23 - v0.1.1b)*  
+### **Minor Patch 4** *(11/13/23 - v0.1.1b)*  
 - **Optimized script size** (truncated lines & concatenated functions).  
 - **Improved script comments** (proofreading & updates).  
 - **Fixed setup functionality:**  
   - `Fullbright` now automatically enabled for `MediaFace`.  
 - **README formatting & cleanup**.  
 
-### 🔹 **Minor Patch 3** *(10/14/23 - v0.1.1a)*  
+### **Minor Patch 3** *(10/14/23 - v0.1.1a)*  
 - **Timer Events Update**  
   - Disabled when the **sim is empty** to save resources.  
   - General optimizations.  
@@ -98,14 +98,11 @@ For a detailed breakdown, see the **[full patch notes](#detailed-change-log).**
     - `"debug"` → Enables debug mode  
     - `"dosetup"` → Forces setup mode  
 
-## 🔧 Contributing  
+## Contributing  
 Interested in contributing? Feel free to fork the repo and submit a pull request! 🎉  
 
-## 👤 Author  
-**Hailey (Hails)**  
-💻 *Coding Fae & LSL Enthusiast*  
-  
-📬 **Contact**: [GitHub Issues](https://github.com/Hailey-Ross/hails.media2Prim/issues)  
+## Author  
+**Hailey (Hails)**   
   
   
 💜 *If you found this useful, consider leaving a ⭐ on GitHub!*  
